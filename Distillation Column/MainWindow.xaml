@@ -1,0 +1,88 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DistillationColumn"
+        xmlns:ModelInternal="clr-namespace:Tekla.Structures.ModelInternal;assembly=Tekla.Structures.Model" x:Class="DistillationColumn.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1200">
+    <Window.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl TabStripPlacement="Left" Background="Black" Grid.ColumnSpan="3">
+            <TabItem Header="Stack">
+                <Grid Background="White">
+                    <Button x:Name="AddRowTop" Content="Add Row" HorizontalAlignment="Left" Height="31" Margin="67,84,0,0" VerticalAlignment="Top" Width="110" Click="addRowTop"/>
+                    <Button x:Name="DeleteRowTop" Content="Delete Row" HorizontalAlignment="Left" Height="31" Margin="226,84,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowTop"/>
+                    <DataGrid x:Name="segmentGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" DataContext="{}"  ItemsSource="{Binding segmentDatas}">
+                        
+                    </DataGrid>
+                    <Button x:Name="AddRowBottom" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowBottom"/>
+                    <Button x:Name="DeleteRowBottom" Content="Delete Row" HorizontalAlignment="Left" Height="30" Margin="226,578,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowBottom"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Chair">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Orientation Angle of Chair" HorizontalAlignment="Left" Margin="65,85,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="278,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Access Door">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Orientation Angle Of Access Door" HorizontalAlignment="Left" Margin="134,129,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="390,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="143" Height="42"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Flange" >
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Flange Width" HorizontalAlignment="Left" Margin="150,151,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="272,155,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stiffner Rings" >
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Ring Width" HorizontalAlignment="Left" Margin="144,122,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="262,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Platform" >
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Circular Access Door" >
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Rectangular Platform" >
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Instrument Nozzle" >
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Select Component" >
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox Content="Stack" HorizontalAlignment="Left" Margin="109,51,0,0" VerticalAlignment="Top" Width="132" Height="37" FontSize="18"/>
+                    <CheckBox Content="Chair" HorizontalAlignment="Left" Margin="109,90,0,0" VerticalAlignment="Top" Width="99" Height="36" FontSize="18"/>
+                    <CheckBox Content="Access Door" HorizontalAlignment="Left" Margin="109,129,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.RowSpan="2"/>
+                    <CheckBox Content="Flange" HorizontalAlignment="Left" Margin="109,168,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
+                    <CheckBox Content="Stiffner Rings" HorizontalAlignment="Left" Margin="109,207,0,0" VerticalAlignment="Top" Width="140" Height="36" FontSize="18"/>
+                    <CheckBox Content="Platform" HorizontalAlignment="Left" Margin="368,90,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
+                    <CheckBox Content="Handrail" HorizontalAlignment="Left" Margin="368,129,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
+                    <CheckBox Content="Circular Access Door" HorizontalAlignment="Left" Margin="368,168,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18" Grid.RowSpan="2"/>
+                    <CheckBox Content="Rectangular Platform" HorizontalAlignment="Left" Margin="368,246,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
+                    <CheckBox Content="Cap and Outlets" HorizontalAlignment="Left" Margin="109,246,0,0" VerticalAlignment="Top" Width="160" Height="36" FontSize="18"/>
+                    <CheckBox Content="Ladder" HorizontalAlignment="Left" Margin="368,51,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.Row="1"/>
+                    <CheckBox Content="Instrument Nozzle" HorizontalAlignment="Left" Margin="368,207,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
+                    <Button x:Name="CreateModel" Content="Create Model" HorizontalAlignment="Left" Height="52" Margin="715,629,0,0" VerticalAlignment="Top" Width="203" Click="createModel"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+    </Grid>
+</Window>
