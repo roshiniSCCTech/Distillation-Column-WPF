@@ -36,28 +36,28 @@
 
     </Window.Resources>
     <Grid>
-        <TabControl TabStripPlacement="Left" Background="Black" Grid.ColumnSpan="3">
+        <TabControl TabStripPlacement="Left" Background="Black" Margin="0,77,0,0">
             <TabItem Header="Stack">
                 <Grid Background="White">
                     <Button x:Name="StackAddRowTop" Content="Add Row" HorizontalAlignment="Left" Height="31" Margin="67,84,0,0" VerticalAlignment="Top" Width="110" Click="addRowTopForStack"/>
                     <Button x:Name="StackDeleteRowTop" Content="Delete Row" HorizontalAlignment="Left" Height="31" Margin="226,84,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowTopForStack"/>
-                    <DataGrid x:Name="StackGrid" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                    <DataGrid x:Name="StackGrid" Height="453" Margin="67,120,68,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding key}"/>
                             <DataGridTextColumn Header="Height" Binding="{Binding seg_height}" Width="150"/>
                             <DataGridTextColumn Header="Bottom Diameter" Binding="{Binding inside_dia_bottom}" Width="150"/>
                             <DataGridTextColumn Header="Top Diameter" Binding="{Binding inside_dia_top}" Width="150"/>
-                            <DataGridTextColumn Header="Thickness" Binding="{Binding shell_thickness}" Width="*"/>
+                            <DataGridTextColumn Header="Thickness" Binding="{Binding shell_thickness}" Width="150"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="StackAddRowBottom" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowBottomForStack"/>
                     <Button x:Name="StackDeleteRowBottom" Content="Delete Row" HorizontalAlignment="Left" Height="30" Margin="226,578,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowBottomForStack"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Chair">
+            <TabItem Header="Chair" Height="35" Margin="-2,0,0,0" VerticalAlignment="Top">
                 <Grid Background="#FFE5E5E5" x:Name="chairGrid">
                     <Label Content="Top Ring Thickness" HorizontalAlignment="Left" Margin="65,85,0,0" VerticalAlignment="Top" />
-                    <TextBox x:Name="Top_Ring_Thickness" HorizontalAlignment="Left" Margin="278,89,0,0" TextWrapping="Wrap" Text="{Binding top_ring_thickness }" VerticalAlignment="Top" Width="120" />
+                    <TextBox x:Name="Top_Ring_Thickness" HorizontalAlignment="Left" Margin="278,89,0,0" TextWrapping="Wrap" Text="{Binding top_ring_thickness }" VerticalAlignment="Top" Width="120" CaretIndex="1000"/>
                     <Label Content="Bottom Ring Thickness" HorizontalAlignment="Left" Margin="65,125,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="Bottom_Ring_Thickness" HorizontalAlignment="Left" Margin="278,129,0,0" TextWrapping="Wrap" Text="{Binding bottom_ring_thickness }" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Stiffner Plate Thickness" HorizontalAlignment="Left" Margin="65,165,0,0" VerticalAlignment="Top"/>
@@ -76,7 +76,7 @@
             </TabItem>
             <TabItem Header="Access Door">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="AccessDoorGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                    <DataGrid x:Name="AccessDoorGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False" >
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
@@ -98,7 +98,7 @@
             </TabItem>
             <TabItem Header="Distillation Flange" Height="35" Margin="-2,0,0,0" VerticalAlignment="Top" >
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="flangeGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                    <DataGrid x:Name="flangeGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
                             <DataGridTextColumn Header="Number Of Bolts" Binding="{Binding number_of_bolts}" Width="170"/>
@@ -132,7 +132,7 @@
             </TabItem>
             <TabItem Header="Platform" >
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="PlatformGrid" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                    <DataGrid x:Name="PlatformGrid" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Elevation" Binding="{Binding Elevation}"/>
                             <DataGridTextColumn Header="Orientation Angle" Binding="{Binding Orientation_Angle}" />
@@ -163,7 +163,7 @@
             </TabItem>
             <TabItem Header="Circular Access Door" >
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="CircularAccessGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                    <DataGrid x:Name="CircularAccessGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="100" />
@@ -207,7 +207,7 @@
             </TabItem>
             <TabItem Header="Instrument Nozzle" >
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="InstrumentNozleGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                    <DataGrid x:Name="InstrumentNozleGrid" HorizontalAlignment="Left" Height="453" Margin="67,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
@@ -242,6 +242,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <TextBlock Margin="173.5,10,0,0" TextWrapping="Wrap" Text="Distillation Column" VerticalAlignment="Top" FontSize="40" FontWeight="DemiBold" HorizontalAlignment="Center" />
 
 
     </Grid>
