@@ -88,3 +88,48 @@ C:\Users\Bhavita Patil\Desktop\Tekla Project WPF\Distillation-Column-WPF\Distill
 C:\Users\Bhavita Patil\Desktop\Tekla Project WPF\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.csproj.CopyComplete
 C:\Users\Bhavita Patil\Desktop\Tekla Project WPF\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.exe
 C:\Users\Bhavita Patil\Desktop\Tekla Project WPF\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.pdb
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Distillation Column.exe.config
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Distillation Column.exe
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Distillation Column.pdb
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Newtonsoft.Json.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Buffers.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Memory.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Numerics.Vectors.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Text.Encodings.Web.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Text.Json.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.ValueTuple.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Catalogs.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Datatype.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Model.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Newtonsoft.Json.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Buffers.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Memory.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Numerics.Vectors.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Text.Encodings.Web.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Text.Json.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\System.ValueTuple.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Catalogs.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Datatype.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Model.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.csproj.AssemblyReference.cache
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.csproj.SuggestedBindingRedirects.cache
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\MainWindow.g.cs
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\App.g.cs
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column_MarkupCompile.cache
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column_MarkupCompile.lref
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\MainWindow.baml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.g.resources
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\DistillationColumn.Properties.Resources.resources
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.csproj.GenerateResource.cache
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.csproj.CoreCompileInputs.cache
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.csproj.CopyComplete
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.exe
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\obj\Debug\Distillation Column.pdb
