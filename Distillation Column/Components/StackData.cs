@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace DistillationColumn
 {
-    class SegmentData
+    class StackData
     {
         public int key { get; set; }
         public double seg_height { get; set; }

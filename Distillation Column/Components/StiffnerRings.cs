@@ -27,9 +27,19 @@ namespace DistillationColumn
             _global = global;
             _tModel = tModel;
             _pointList= new List<ContourPoint>();
+            SetRingData();
             CreateStiffnerRings();
         }
 
+        void SetRingData()
+        {
+            JToken ringData = _global.JData["stiffner_ring"];
+            _startHeight = (double)ringData["start_height"];
+            _endHeight = (double)ringData["end_height"];
+            _stiffnerRingCount = (int)ringData["stiffner_ring_count"];
+
+           
+        }
         public void CreateStiffnerRings() 
         {
             double spacing=(_endHeight-_startHeight)/_stiffnerRingCount;

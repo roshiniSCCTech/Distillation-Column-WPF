@@ -56,24 +56,19 @@ namespace DistillationColumn
 
         public void SetPlatformData()
         {
-            List<JToken> platformlist = _global.JData["RectangularPlatform"].ToList();
-            foreach (JToken platform in platformlist)
-            {
+            JToken platform = _global.JData["RectangularPlatform"];
+            
                 int lastStackCount = _global.StackSegList.Count - 1;
                 double stackElevation = _global.StackSegList[lastStackCount][4] + _global.StackSegList[lastStackCount][3];                
                 double radius = (_global.StackSegList[lastStackCount][1]) / 2;
                 elevation = stackElevation+radius + 1000;
                 height = (float)platform["height"];
                 width = (float)platform["width"];
-                plateWidth = (float)platform["plateWidth"];
-                _platformList.Add(new List<double> { elevation, height, width, plateWidth });
-            }
+                plateWidth = (float)platform["plateWidth"];          
 
         }
         public void createPlatform()
-        {
-            foreach (List<double> platform in _platformList)
-            {
+        {          
                 //double radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
                 TSM.ContourPoint origin = new TSM.ContourPoint(_global.Origin, null);
                 TSM.ContourPoint point1 = _tModel.ShiftVertically(origin, elevation);
@@ -108,7 +103,6 @@ namespace DistillationColumn
 
 
                 }
-            }
         }
 
         public void CreateHandRailParallelToXAxis()
@@ -191,12 +185,6 @@ namespace DistillationColumn
 
                         }
                     }
-                    
-                   
-                   
-                    
-                    
-
                 }
                 _distanceLengthList.Clear();
             }

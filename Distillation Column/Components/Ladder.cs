@@ -56,7 +56,7 @@ namespace DistillationColumn
 
         public void SetLadderData()
         {
-            List<JToken> ladderList = _global.JData["Ladder"].ToList();
+            List<JToken> ladderList = _global.JData["Platform"].ToList();
             foreach (JToken ladder in ladderList)
             {
                 orientationAngle = (float)ladder["Orientation_Angle"];
@@ -69,23 +69,18 @@ namespace DistillationColumn
                 endAngle = (float)ladder["Platfrom_End_Angle"];
                 _ladderList.Add(new List<double> { orientationAngle, elevation, rungSpacing, obstructionDist, startAngle, endAngle });
             }
-            List<JToken> ladderList1 = _global.JData["RectangularPlatform"].ToList();
-            foreach (JToken ladder in ladderList1)
-            {
-                orientationAngle = (float)ladder["Orientation_Angle"];
-                elevation = platformElevation;
-                rungSpacing = (float)ladder["Rungs_spacing"];
-                obstructionDist = (float)ladder["Obstruction_Distance"];
-                startAngle = (float)ladder["Platform_Start_Angle"];
-                endAngle = (float)ladder["Platfrom_End_Angle"];
-                _ladderList.Add(new List<double> { orientationAngle, elevation, rungSpacing, obstructionDist, startAngle, endAngle });
-            }
+            JToken ladderList1 = _global.JData["RectangularPlatform"];
 
-            List<JToken> ladderBaseList = _global.JData["chair"].ToList();
-            foreach (JToken ladder in ladderBaseList)
-            {
-                ladderBase = (float)ladder["height"] + (float)ladder["top_ring_thickness"] + (float)ladder["bottom_ring_thickness"];
-            }
+            orientationAngle = (float)ladderList1["Orientation_Angle"];
+            elevation = platformElevation;
+            rungSpacing = (float)ladderList1["Rungs_spacing"];
+            obstructionDist = (float)ladderList1["Obstruction_Distance"];
+            startAngle = (float)ladderList1["Platform_Start_Angle"];
+            endAngle = (float)ladderList1["Platform_End_Angle"];
+            _ladderList.Add(new List<double> { orientationAngle, elevation, rungSpacing, obstructionDist, startAngle, endAngle });
+
+            JToken ladderBaseList = _global.JData["chair"];
+            ladderBase = (float)ladderBaseList["height"] + (float)ladderBaseList["top_ring_thickness"] + (float)ladderBaseList["bottom_ring_thickness"];
         }
 
         public void CreateLadder()
@@ -101,7 +96,7 @@ namespace DistillationColumn
                 double Height = (elevation) - ladderBase + (4 * ladder[2]);
 
                 radius = _tModel.GetRadiusAtElevation(ladderBase, _global.StackSegList, true);
-                double count = 0;               
+                double count = 0;
 
                 if (count1 == _ladderList.Count - 1)
                 {
@@ -118,7 +113,7 @@ namespace DistillationColumn
                         count++;
                 }
 
-                
+
 
                 if (count != 0)
                 {
@@ -131,7 +126,7 @@ namespace DistillationColumn
 
 
                 TSM.ContourPoint point11 = _tModel.ShiftVertically(point1, Height);
-                double radius1 = _tModel.GetRadiusAtElevation(point11.Z- _global.Origin.Z, _global.StackSegList, true);
+                double radius1 = _tModel.GetRadiusAtElevation(point11.Z - _global.Origin.Z, _global.StackSegList, true);
                 point21 = _tModel.ShiftHorizontallyRad(point11, radius1 + Math.Max(200, ladder[3]), 1, orientationAngle);
                 int lastStackCount = _global.StackSegList.Count - 1;
                 double stackElevation = _global.StackSegList[lastStackCount][4] + _global.StackSegList[lastStackCount][3];
@@ -202,7 +197,7 @@ namespace DistillationColumn
                     Ladder.Position.Rotation = Position.RotationEnum.BACK;
                     Ladder.Position.RotationOffset = 0;
                 }
-                
+
 
                 Ladder.Insert();
 
@@ -251,7 +246,7 @@ namespace DistillationColumn
                 if (count1 == _ladderList.Count - 1)
                 {
                     RungDistance = 450 + (2 * rungSpacing);
-                    CreatePlate(point2, point21, RungDistance,count);
+                    CreatePlate(point2, point21, RungDistance, count);
                 }
                 else
                 {
@@ -270,7 +265,7 @@ namespace DistillationColumn
                         {
                             RungDistance = 450 + (((Height / rungSpacing) - 2) * rungSpacing);
                         }
-                        CreatePlate(point2, point21, RungDistance,count);
+                        CreatePlate(point2, point21, RungDistance, count);
 
 
                     }
@@ -278,8 +273,8 @@ namespace DistillationColumn
                 ladderBase = elevation;
                 count1++;
             }
-           
-            point21 = new ContourPoint(_tModel.ShiftVertically(point21, -(point21.Z - (platformElevation+ _global.Origin.Z))), null);
+
+            point21 = new ContourPoint(_tModel.ShiftVertically(point21, -(point21.Z - (platformElevation + _global.Origin.Z))), null);
             createSquareCut(point21);
 
         }
@@ -334,7 +329,7 @@ namespace DistillationColumn
 
 
             B.Position.Rotation = _global.Position.Rotation;
-            B.Position.RotationOffset= _global.Position.RotationOffset;
+            B.Position.RotationOffset = _global.Position.RotationOffset;
 
             B.StartPointOffset.Dx = 30;
 
@@ -487,13 +482,13 @@ namespace DistillationColumn
                 if (angle >= 45 && angle <= 90)
                 {
                     _global.Position.Rotation = Position.RotationEnum.BACK;
-                    _global.Position.RotationOffset = 90-angle;
+                    _global.Position.RotationOffset = 90 - angle;
                     CreateBolts(smallRightPlate, largeRightPlate, rightbackTopPoint, rightbackBottomPoint);
 
                     _global.Position.Rotation = Position.RotationEnum.FRONT;
                     _global.Position.RotationOffset = 90 - angle;
                     CreateBolts(smallLeftPlate, largeLeftPlate, leftbackTopPoint, leftbackBottomPoint);
-                   
+
                 }
                 if (angle > 90 && angle < 135)
                 {
@@ -504,7 +499,7 @@ namespace DistillationColumn
                     _global.Position.Rotation = Position.RotationEnum.FRONT;
                     _global.Position.RotationOffset = 90 - angle;
                     CreateBolts(smallLeftPlate, largeLeftPlate, leftbackTopPoint, leftbackBottomPoint);
-                    
+
                 }
                 if (angle >= 135 && angle < 225)
                 {
@@ -515,9 +510,9 @@ namespace DistillationColumn
                     _global.Position.Rotation = Position.RotationEnum.BELOW;
                     _global.Position.RotationOffset = 180 - angle;
                     CreateBolts(smallLeftPlate, largeLeftPlate, leftbackTopPoint, leftbackBottomPoint);
-                    
+
                 }
-               
+
                 if (angle >= 225 && angle < 315)
                 {
                     _global.Position.Rotation = Position.RotationEnum.FRONT;
@@ -527,9 +522,9 @@ namespace DistillationColumn
                     _global.Position.Rotation = Position.RotationEnum.BACK;
                     _global.Position.RotationOffset = 270 - angle;
                     CreateBolts(smallLeftPlate, largeLeftPlate, leftbackTopPoint, leftbackBottomPoint);
-                   
+
                 }
-                
+
                 if (angle >= 315 && angle <= 360)
                 {
                     _global.Position.Rotation = Position.RotationEnum.BELOW;
@@ -539,7 +534,7 @@ namespace DistillationColumn
                     _global.Position.Rotation = Position.RotationEnum.TOP;
                     _global.Position.RotationOffset = 360 - angle;
                     CreateBolts(smallLeftPlate, largeLeftPlate, leftbackTopPoint, leftbackBottomPoint);
-                    
+
                 }
             }
             else
@@ -553,7 +548,7 @@ namespace DistillationColumn
                 CreateBolts(smallLeftPlate, largeLeftPlate, leftbackTopPoint, leftbackBottomPoint);
             }
 
-           
+
 
 
         }

@@ -111,10 +111,12 @@
     <Compile Include="Components\AccessDoorData.cs" />
     <Compile Include="Components\CapAndOutlets.cs" />
     <Compile Include="Components\Chair.cs" />
+    <Compile Include="Components\ChairData.cs" />
     <Compile Include="Components\CircularAccessData.cs" />
     <Compile Include="Components\CircularAccessDoor.cs" />
     <Compile Include="Components\ComponentHandler.cs" />
     <Compile Include="Components\Flange.cs" />
+    <Compile Include="Components\FlangeData.cs" />
     <Compile Include="Components\GeometricalHelperClass.cs" />
     <Compile Include="Components\Globals.cs" />
     <Compile Include="Components\Handrail.cs" />
@@ -123,9 +125,12 @@
     <Compile Include="Components\InstrumentNozzleData.cs" />
     <Compile Include="Components\Ladder.cs" />
     <Compile Include="Components\Platform.cs" />
+    <Compile Include="Components\PlatformData.cs" />
     <Compile Include="Components\RectangularPlatform.cs" />
-    <Compile Include="Components\SegmentData.cs" />
+    <Compile Include="Components\RectangularPlatformData.cs" />
     <Compile Include="Components\Stack.cs" />
+    <Compile Include="Components\StackData.cs" />
+    <Compile Include="Components\StiffnerRingData.cs" />
     <Compile Include="Components\StiffnerRings.cs" />
     <Compile Include="Components\TeklaModelling.cs" />
     <Compile Include="MainWindow.xaml.cs">

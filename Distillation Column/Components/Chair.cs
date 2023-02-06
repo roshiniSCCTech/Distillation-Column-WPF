@@ -46,19 +46,18 @@ namespace DistillationColumn
         }
         public void SetChairData()
         {
-            List<JToken> _chairlist = _global.JData["chair"].ToList();
-            foreach (JToken chair in _chairlist)
-            {
-                ringWidth = (float)chair["width"];
-                stiffnerCount = (int)chair["number_of_plates"];
-                stiffnerLength = (float)chair["height"];
-                topRingThickness = (float)chair["top_ring_thickness"];
-                bottomRingThickness= (float)chair["bottom_ring_thickness"];
-                insideDistance = (float)chair["inside_distance"];
-                stiffnerThickness = (float)chair["stiffner_plate_thickness"];
-                distanceBetweenStiffner = (float)chair["distance_between_stiffner_plates"];
+            JToken _chairlist = _global.JData["chair"];
+            
+                ringWidth = (float)_chairlist["width"];
+                stiffnerCount = (int)_chairlist["number_of_plates"];
+                stiffnerLength = (float)_chairlist["height"];
+                topRingThickness = (float)_chairlist["top_ring_thickness"];
+                bottomRingThickness= (float)_chairlist["bottom_ring_thickness"];
+                insideDistance = (float)_chairlist["inside_distance"];
+                stiffnerThickness = (float)_chairlist["stiffner_plate_thickness"];
+                distanceBetweenStiffner = (float)_chairlist["distance_between_stiffner_plates"];
 
-            }
+           
         }
         public void CreateChair()
         {

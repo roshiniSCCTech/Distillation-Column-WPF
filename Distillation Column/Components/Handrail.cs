@@ -135,7 +135,7 @@ namespace DistillationColumn
         public void SetHandrailrData()
         {
 
-            List<JToken> _gratinglist = _global.JData["Ladder"].ToList();
+            List<JToken> _gratinglist = _global.JData["Platform"].ToList();
             foreach (JToken grating in _gratinglist)
             {
                 platformStartAngle = (float)grating["Platform_Start_Angle"];

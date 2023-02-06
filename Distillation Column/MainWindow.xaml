@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DistillationColumn"
         xmlns:ModelInternal="clr-namespace:Tekla.Structures.ModelInternal;assembly=Tekla.Structures.Model" x:Class="DistillationColumn.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200">
+        Title="MainWindow" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="TabItem">
             <Setter Property="Background" Value="Gray"/>
@@ -14,7 +14,7 @@
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
-        
+
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
@@ -29,6 +29,9 @@
 
         <Style TargetType="TextBox">
             <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
     </Window.Resources>
@@ -36,26 +39,46 @@
         <TabControl TabStripPlacement="Left" Background="Black" Grid.ColumnSpan="3">
             <TabItem Header="Stack">
                 <Grid Background="White">
-                    <Button x:Name="AddRowTop" Content="Add Row" HorizontalAlignment="Left" Height="31" Margin="67,84,0,0" VerticalAlignment="Top" Width="110" Click="addRowTop"/>
-                    <Button x:Name="DeleteRowTop" Content="Delete Row" HorizontalAlignment="Left" Height="31" Margin="226,84,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowTop"/>
-                    <DataGrid x:Name="segmentGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" DataContext="{}"  ItemsSource="{Binding segmentDatas}">
-                        
+                    <Button x:Name="StackAddRowTop" Content="Add Row" HorizontalAlignment="Left" Height="31" Margin="67,84,0,0" VerticalAlignment="Top" Width="110" Click="addRowTopForStack"/>
+                    <Button x:Name="StackDeleteRowTop" Content="Delete Row" HorizontalAlignment="Left" Height="31" Margin="226,84,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowTopForStack"/>
+                    <DataGrid x:Name="StackGrid" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding key}"/>
+                            <DataGridTextColumn Header="Height" Binding="{Binding seg_height}" Width="150"/>
+                            <DataGridTextColumn Header="Bottom Diameter" Binding="{Binding inside_dia_bottom}" Width="150"/>
+                            <DataGridTextColumn Header="Top Diameter" Binding="{Binding inside_dia_top}" Width="150"/>
+                            <DataGridTextColumn Header="Thickness" Binding="{Binding shell_thickness}" Width="*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="AddRowBottom" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowBottom"/>
-                    <Button x:Name="DeleteRowBottom" Content="Delete Row" HorizontalAlignment="Left" Height="30" Margin="226,578,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowBottom"/>
+                    <Button x:Name="StackAddRowBottom" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowBottomForStack"/>
+                    <Button x:Name="StackDeleteRowBottom" Content="Delete Row" HorizontalAlignment="Left" Height="30" Margin="226,578,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowBottomForStack"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Chair">
-                <Grid Background="#FFE5E5E5">
-                    <Label Content="Orientation Angle of Chair" HorizontalAlignment="Left" Margin="65,85,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="278,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                <Grid Background="#FFE5E5E5" x:Name="chairGrid">
+                    <Label Content="Top Ring Thickness" HorizontalAlignment="Left" Margin="65,85,0,0" VerticalAlignment="Top" />
+                    <TextBox x:Name="Top_Ring_Thickness" HorizontalAlignment="Left" Margin="278,89,0,0" TextWrapping="Wrap" Text="{Binding top_ring_thickness }" VerticalAlignment="Top" Width="120" />
+                    <Label Content="Bottom Ring Thickness" HorizontalAlignment="Left" Margin="65,125,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Bottom_Ring_Thickness" HorizontalAlignment="Left" Margin="278,129,0,0" TextWrapping="Wrap" Text="{Binding bottom_ring_thickness }" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Stiffner Plate Thickness" HorizontalAlignment="Left" Margin="65,165,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Stiffner_Plate_Thickness" HorizontalAlignment="Left" Margin="278,169,0,0" TextWrapping="Wrap" Text="{Binding stiffner_plate_thickness}" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Distance Between Plates" HorizontalAlignment="Left" Margin="65,205,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Distance_between_Plates" HorizontalAlignment="Left" Margin="278,209,0,0" TextWrapping="Wrap" Text="{Binding distance_between_stiffner_plates}" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Stiffner Count" HorizontalAlignment="Left" Margin="65,245,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Stiffner_Count" HorizontalAlignment="Left" Margin="278,249,0,0" TextWrapping="Wrap" Text="{Binding number_of_plates}" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Width" HorizontalAlignment="Left" Margin="65,285,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ChairWidth" HorizontalAlignment="Left" Margin="278,289,0,0" TextWrapping="Wrap" Text="{Binding width }" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Height" HorizontalAlignment="Left" Margin="65,325,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ChairHeight" HorizontalAlignment="Left" Margin="278,329,0,0" TextWrapping="Wrap" Text="{Binding height }" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Inside Distance" HorizontalAlignment="Left" Margin="65,365,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="Inside_Distance" HorizontalAlignment="Left" Margin="278,369,0,0" TextWrapping="Wrap" Text="{Binding inside_distance }" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Access Door">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="AccessDoorGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding key}" Width="50" />
+
                             <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
                             <DataGridTextColumn Header="Orientation Angle" Binding="{Binding orientation_angle}" Width="170"/>
                             <DataGridTextColumn Header="Height" Binding="{Binding height}" Width="150"/>
@@ -73,26 +96,76 @@
                     <Button x:Name="AccessDoorAddRow" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowforAccessDoor"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Flange" >
+            <TabItem Header="Distillation Flange" Height="35" Margin="-2,0,0,0" VerticalAlignment="Top" >
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="Flange Width" HorizontalAlignment="Left" Margin="150,151,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="272,155,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <DataGrid x:Name="flangeGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
+                            <DataGridTextColumn Header="Number Of Bolts" Binding="{Binding number_of_bolts}" Width="170"/>
+                            <DataGridTextColumn Header="Inside Distance" Binding="{Binding inside_distance}" Width="150"/>
+                            <DataGridTextColumn Header="Ring Width" Binding="{Binding ring_width}" Width="150"/>
+                            <DataGridTextColumn Header="Top Ring Thickness" Binding="{Binding top_ring_thickness}" Width="150"/>
+                            <DataGridTextColumn Header="Bottom Ring Thickness" Binding="{Binding bottom_ring_thickness}" Width="150"/>
+
+                            <DataGridTemplateColumn Header="Delete" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Command="Delete"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="Addflannge" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowFlange"/>
                 </Grid>
+
             </TabItem>
             <TabItem Header="Stiffner Rings" >
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="Ring Width" HorizontalAlignment="Left" Margin="144,122,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="262,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Start Height" HorizontalAlignment="Left" Margin="144,130,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="StartHeight" HorizontalAlignment="Left" Margin="262,130,0,0" TextWrapping="Wrap" Text="{Binding start_height}" DataContext="{Binding ringDatas}" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="End Height" HorizontalAlignment="Left" Margin="144,178,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="EndHeight" HorizontalAlignment="Left" Margin="262,178,0,0" TextWrapping="Wrap" Text="{Binding end_height}" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Stiffner Count" HorizontalAlignment="Left" Margin="144,226,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="StiffnerCount" HorizontalAlignment="Left" Margin="262,226,0,0" TextWrapping="Wrap" Text="{Binding stiffner_ring_count}" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Platform" >
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="PlatformGrid" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Elevation" Binding="{Binding Elevation}"/>
+                            <DataGridTextColumn Header="Orientation Angle" Binding="{Binding Orientation_Angle}" />
+                            <DataGridTextColumn Header="Platform Width" Binding="{Binding Platform_Width}" />
+                            <DataGridTextColumn Header="Platform Length" Binding="{Binding Platform_Length}" />
+                            <DataGridTextColumn Header="Platform Start Angle" Binding="{Binding Platform_Start_Angle}" />
+                            <DataGridTextColumn Header="Platfrom End Angle" Binding="{Binding Platfrom_End_Angle}" />
+                            <DataGridTextColumn Header="Distance From Stack" Binding="{Binding Distance_From_Stack}" />
+                            <DataGridTextColumn Header="Gap Between Grating Plate" Binding="{Binding Gap_Between_Grating_Plate}" />
+                            <DataGridTextColumn Header="Grating Thickness" Binding="{Binding Grating_Thickness}" />
+                            <DataGridTextColumn Header="Rung Spacing" Binding="{Binding Rungs_spacing}" />
+                            <DataGridTextColumn Header="Extended Length" Binding="{Binding Extended_Length}" />
+                            <DataGridTextColumn Header="Extended Start Angle" Binding="{Binding Extended_Start_Angle}" />
+                            <DataGridTextColumn Header="Extended End Angle" Binding="{Binding Extended_End_Angle}" />
+                            <DataGridTextColumn Header="Obstruction Distance" Binding="{Binding Obstruction_Distance}" />
+                            <DataGridTemplateColumn Header="Delete">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Command="Delete"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="PlatformAddRow" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowForPlatform"/>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Circular Access Door" >
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="CircularAccessGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding key}" Width="30" />
+
                             <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="100" />
                             <DataGridTextColumn Header="Orientation Angle" Binding="{Binding orientation_angle}" Width="150"/>
                             <DataGridTextColumn Header="NeckPlate Thickness" Binding="{Binding neck_plate_Thickness}" Width="150"/>
@@ -113,13 +186,30 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Rectangular Platform" >
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="Height" HorizontalAlignment="Left" Margin="425,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  Text="{Binding height}"/>
+                    <TextBox x:Name="Width" HorizontalAlignment="Left" Margin="425,102,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  Text="{Binding width}"/>
+                    <TextBox x:Name="Plate_Width" HorizontalAlignment="Left" Margin="425,164,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  Text="{Binding plateWidth}"/>
+                    <TextBox x:Name="Orientation_Angle" HorizontalAlignment="Left" Margin="425,228,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  Text="{Binding Orientation_Angle}"/>
+                    <TextBox x:Name="Rung_Spacing" HorizontalAlignment="Left" Margin="425,290,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  Text="{Binding Rungs_spacing}"/>
+                    <TextBox x:Name="Obstruction_Distance" HorizontalAlignment="Left" Margin="425,351,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  Text="{Binding Obstruction_Distance}"/>
+                    <TextBox x:Name="Platform_Start_Angle" HorizontalAlignment="Left" Margin="425,412,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"  Text="{Binding Platform_Start_Angle}"/>
+                    <TextBox x:Name="Platform_End_Angle" HorizontalAlignment="Left" Margin="425,471,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding Platform_End_Angle}"/>
+                    <Label Content="Height" HorizontalAlignment="Left" Margin="232,45,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Width" HorizontalAlignment="Left" Margin="232,103,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Plate Width" HorizontalAlignment="Left" Margin="232,165,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.067,0.245"/>
+                    <Label Content="Orientation Angle" HorizontalAlignment="Left" Margin="232,229,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Rung Spacing" HorizontalAlignment="Left" Margin="232,291,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Obstruction Distance" HorizontalAlignment="Left" Margin="232,352,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Platform Start Angle" HorizontalAlignment="Left" Margin="232,413,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Platform End Angle" HorizontalAlignment="Left" Margin="232,474,0,0" VerticalAlignment="Top"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Instrument Nozzle" >
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="InstrumentNozleGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding key}" Width="50" />
+
                             <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
                             <DataGridTextColumn Header="Orientation Angle" Binding="{Binding orientation_angle}" Width="170"/>
                             <DataGridTemplateColumn Header="Delete" >
@@ -136,19 +226,19 @@
             </TabItem>
             <TabItem Header="Select Component" >
                 <Grid Background="#FFE5E5E5">
-                    <CheckBox Content="Stack" HorizontalAlignment="Left" Margin="109,51,0,0" VerticalAlignment="Top" Width="132" Height="37" FontSize="18"/>
-                    <CheckBox Content="Chair" HorizontalAlignment="Left" Margin="109,90,0,0" VerticalAlignment="Top" Width="99" Height="36" FontSize="18"/>
-                    <CheckBox Content="Access Door" HorizontalAlignment="Left" Margin="109,129,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.RowSpan="2"/>
-                    <CheckBox Content="Flange" HorizontalAlignment="Left" Margin="109,168,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
-                    <CheckBox Content="Stiffner Rings" HorizontalAlignment="Left" Margin="109,207,0,0" VerticalAlignment="Top" Width="140" Height="36" FontSize="18"/>
-                    <CheckBox Content="Platform" HorizontalAlignment="Left" Margin="368,90,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
-                    <CheckBox Content="Handrail" HorizontalAlignment="Left" Margin="368,129,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
-                    <CheckBox Content="Circular Access Door" HorizontalAlignment="Left" Margin="368,168,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18" Grid.RowSpan="2"/>
-                    <CheckBox Content="Rectangular Platform" HorizontalAlignment="Left" Margin="368,246,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
-                    <CheckBox Content="Cap and Outlets" HorizontalAlignment="Left" Margin="109,246,0,0" VerticalAlignment="Top" Width="160" Height="36" FontSize="18"/>
-                    <CheckBox Content="Ladder" HorizontalAlignment="Left" Margin="368,51,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.Row="1"/>
-                    <CheckBox Content="Instrument Nozzle" HorizontalAlignment="Left" Margin="368,207,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
-                    <Button x:Name="CreateModel" Content="Create Model" HorizontalAlignment="Left" Height="52" Margin="715,629,0,0" VerticalAlignment="Top" Width="203" Click="createModel"/>
+                    <CheckBox x:Name="Check_Stack" Content="Stack" HorizontalAlignment="Left" Margin="109,51,0,0" VerticalAlignment="Top" Width="132" Height="37" FontSize="18" />
+                    <CheckBox x:Name="Check_Chair" Content="Chair" HorizontalAlignment="Left" Margin="109,90,0,0" VerticalAlignment="Top" Width="99" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_Access_Door" Content="Access Door" HorizontalAlignment="Left" Margin="109,129,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.RowSpan="2"/>
+                    <CheckBox x:Name="Check_Distillation_Flange" Content="Distillation_Flange" HorizontalAlignment="Left" Margin="109,168,0,0" VerticalAlignment="Top" Width="160" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_Stiffner_Ring" Content="Stiffner Rings" HorizontalAlignment="Left" Margin="109,207,0,0" VerticalAlignment="Top" Width="140" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_Platform" Content="Platform" HorizontalAlignment="Left" Margin="368,90,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_HandRail" Content="Handrail" HorizontalAlignment="Left" Margin="368,129,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_Circular_Access_Door" Content="Circular Access Door" HorizontalAlignment="Left" Margin="368,168,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18" Grid.RowSpan="2"/>
+                    <CheckBox x:Name="Check_Rectangular_Platform" Content="Rectangular Platform" HorizontalAlignment="Left" Margin="368,246,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_Cap_and_Outlets" Content="Cap and Outlets" HorizontalAlignment="Left" Margin="109,246,0,0" VerticalAlignment="Top" Width="160" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_Ladder" Content="Ladder" HorizontalAlignment="Left" Margin="368,51,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.Row="1"/>
+                    <CheckBox x:Name="Check_Instrument_Nozzle" Content="Instrument Nozzle" HorizontalAlignment="Left" Margin="368,207,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
+                    <Button x:Name="Check_CreateModel" Content="Create Model" HorizontalAlignment="Left" Height="52" Margin="715,629,0,0" VerticalAlignment="Top" Width="203" Click="createModel"/>
                 </Grid>
             </TabItem>
         </TabControl>

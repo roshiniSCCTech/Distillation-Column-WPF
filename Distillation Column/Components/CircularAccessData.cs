@@ -8,7 +8,7 @@ namespace DistillationColumn
 {
     class CircularAccessData
     {
-            public int key { get; set; }
+          
             public double elevation { get; set; }
             public double orientation_angle { get; set; }
             public double neck_plate_Thickness { get; set; }

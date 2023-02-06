@@ -13,28 +13,55 @@ namespace DistillationColumn
     {
         Globals _global;
         TeklaModelling _tModel;
-        public ComponentHandler(Globals global, TeklaModelling teklaModel)
+        public ComponentHandler(Globals global, TeklaModelling teklaModel, Dictionary<string, bool?> checkComponents)
         {
             _global = global;
-            _tModel = teklaModel;
-
-            new ImportCustomComponent(_global, _tModel);
-
+            _tModel = teklaModel; new ImportCustomComponent(_global, _tModel);
             new Stack(_global, _tModel);
-
-            new Chair(_global, _tModel);
-            new AccessDoor(_global, _tModel);
-            new Flange(_global, _tModel);
-            new StiffnerRings(_global, _tModel);
-            new Platform(_global, _tModel);
-            new Handrail(_global, _tModel);
-            new CircularAccessDoor(_global, _tModel);           
-            new RectangularPlatform(_global, _tModel);
-
-            new CapAndOutlets(_global, _tModel);
-            new Ladder(_global, _tModel);
-            new InstrumentNozzle(_global, _tModel);
-
+            if (checkComponents["chair"].Value)
+            {
+                new Chair(_global, _tModel);
+            }
+            if (checkComponents["stiffner_ring"].Value)
+            {
+                new StiffnerRings(_global, _tModel);
+            }
+            if (checkComponents["flange"].Value)
+            {
+                new Flange(_global, _tModel);
+            }
+            if (checkComponents["access_door"].Value)
+            {
+                new AccessDoor(_global, _tModel);
+            }
+            if (checkComponents["platform"].Value)
+            {
+                new Platform(_global, _tModel);
+            }
+            if (checkComponents["handrail"].Value)
+            {
+                new Handrail(_global, _tModel);
+            }
+            if (checkComponents["circular_access_door"].Value)
+            {
+                new CircularAccessDoor(_global, _tModel);
+            }
+            if (checkComponents["rectangular_platform"].Value)
+            {
+                new RectangularPlatform(_global, _tModel);
+            }
+            if (checkComponents["cap"].Value)
+            {
+                new CapAndOutlets(_global, _tModel);
+            }
+            if (checkComponents["ladder"].Value)
+            {
+                new Ladder(_global, _tModel);
+            }
+            if (checkComponents["instrument_nozzle"].Value)
+            {
+                new InstrumentNozzle(_global, _tModel);
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace DistillationColumn
 
             _pointsList = new List<TSM.ContourPoint>();
 
-            List<JToken> platformList = _global.JData["Ladder"].ToList();
+            List<JToken> platformList = _global.JData["Platform"].ToList();
 
             foreach (JToken platform in platformList)
             {
