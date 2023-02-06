@@ -141,8 +141,9 @@ namespace DistillationColumn
             
             // set data for rectangular platform
             JData["RectangularPlatform"] = JObject.Parse(JsonConvert.SerializeObject(rectPlatformData));
-           
+
             // set data for  platform
+            platformDatas.Sort((x, y) => x.Elevation.CompareTo(y.Elevation));
             JData["Platform"] = JArray.Parse(JsonConvert.SerializeObject(platformDatas));
 
             // set data for  chair
