@@ -14,6 +14,23 @@
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
+        
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+
     </Window.Resources>
     <Grid>
         <TabControl TabStripPlacement="Left" Background="Black" Grid.ColumnSpan="3">
@@ -36,8 +53,24 @@
             </TabItem>
             <TabItem Header="Access Door">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="Orientation Angle Of Access Door" HorizontalAlignment="Left" Margin="134,129,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="390,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="143" Height="42"/>
+                    <DataGrid x:Name="AccessDoorGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding key}" Width="50" />
+                            <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
+                            <DataGridTextColumn Header="Orientation Angle" Binding="{Binding orientation_angle}" Width="170"/>
+                            <DataGridTextColumn Header="Height" Binding="{Binding height}" Width="150"/>
+                            <DataGridTextColumn Header="Width"  Binding="{Binding width}" Width="150"/>
+                            <DataGridTextColumn Header="Breadth "  Binding="{Binding breadth }" Width="150"/>
+                            <DataGridTemplateColumn Header="Delete" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Command="Delete" Width="150"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="AccessDoorAddRow" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowforAccessDoor"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Flange" >
@@ -56,13 +89,50 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Circular Access Door" >
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="CircularAccessGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding key}" Width="30" />
+                            <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="100" />
+                            <DataGridTextColumn Header="Orientation Angle" Binding="{Binding orientation_angle}" Width="150"/>
+                            <DataGridTextColumn Header="NeckPlate Thickness" Binding="{Binding neck_plate_Thickness}" Width="150"/>
+                            <DataGridTextColumn Header="Plate Diameter"  Binding="{Binding plate_Diameter}" Width="120"/>
+                            <DataGridTextColumn Header="NeckPlate Width "  Binding="{Binding neck_plate_width }" Width="150"/>
+                            <DataGridTextColumn Header="LiningPlate Width "  Binding="{Binding lining_plate_width }" Width="150"/>
+                            <DataGridTextColumn Header="NumberOf Bolts "  Binding="{Binding number_of_bolts }" Width="150"/>
+                            <DataGridTemplateColumn Header="Delete" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Command="Delete"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="CircularAccessDoorAddRow" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowforCircularAccessDoor"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Rectangular Platform" >
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Instrument Nozzle" >
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="InstrumentNozleGrid" HorizontalAlignment="Center" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding key}" Width="50" />
+                            <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
+                            <DataGridTextColumn Header="Orientation Angle" Binding="{Binding orientation_angle}" Width="170"/>
+                            <DataGridTemplateColumn Header="Delete" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Command="Delete"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="InstrumentNozzleAddRow" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowforInstrumentNozzle"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Select Component" >
                 <Grid Background="#FFE5E5E5">

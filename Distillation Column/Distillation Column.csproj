@@ -108,8 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\AccessDoor.cs" />
+    <Compile Include="Components\AccessDoorData.cs" />
     <Compile Include="Components\CapAndOutlets.cs" />
     <Compile Include="Components\Chair.cs" />
+    <Compile Include="Components\CircularAccessData.cs" />
     <Compile Include="Components\CircularAccessDoor.cs" />
     <Compile Include="Components\ComponentHandler.cs" />
     <Compile Include="Components\Flange.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="Components\Handrail.cs" />
     <Compile Include="Components\ImportCustomComponent.cs" />
     <Compile Include="Components\InstrumentNozzle.cs" />
+    <Compile Include="Components\InstrumentNozzleData.cs" />
     <Compile Include="Components\Ladder.cs" />
     <Compile Include="Components\Platform.cs" />
     <Compile Include="Components\RectangularPlatform.cs" />
