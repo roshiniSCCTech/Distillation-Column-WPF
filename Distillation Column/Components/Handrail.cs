@@ -196,17 +196,16 @@ namespace DistillationColumn
                     handrail.SetAttribute("firstPost", 0);
                     handrail.Position.PlaneOffset = 0.0;
                     point2 = _tModel.ShiftHorizontallyRad(point1, gratingOuterRadius, 1, startAngle * (Math.PI / 180));
-                    point2 = _tModel.ShiftAlongCircumferenceRad(point2, 65, 2);
+                    point2 = _tModel.ShiftAlongCircumferenceRad(point2, 68, 2);
                     ContourPoint tPoint = new ContourPoint(_tModel.ShiftHorizontallyRad(point1, (radius+25+10+50)+distanceFromStack+platformLength, 1, startAngle*Math.PI/180), null);
                 
                     tPoint = _tModel.ShiftVertically(tPoint, 1075);
-                    tPoint = _tModel.ShiftAlongCircumferenceRad(tPoint, -35, 2);
+                    tPoint = _tModel.ShiftAlongCircumferenceRad(tPoint, -32, 2);
                     tPoint.Chamfer = new Chamfer(100, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING);
                     ContourPoint bPoint = new ContourPoint(_tModel.ShiftVertically(tPoint, -475), null);
                     bPoint.Chamfer = new Chamfer(100, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING);
                     BentPipe(tPoint,bPoint,100,startAngle);
                     CreateWeldAlongCircumference(point2, arcLengthList[i], true,false);
-                    //bPoint=_tModel.ShiftAlongCircumferenceRad(bPoint,5,2);
                     bPoint = _tModel.ShiftVertically(_tModel.ShiftHorizontallyRad(bPoint, 225, 1),-600);
                     CreateWeld(bPoint,2,startAngle);
 
@@ -214,13 +213,13 @@ namespace DistillationColumn
                 else if ((endAngle == extensionEndAngle && endAngle!=platformEndAngle) && i == arcLengthList.Count-1)
                 {
                     handrail.SetAttribute("endBend", 0);
-                    arcLengthList[i] = arcLengthList[i] + 185;
+                    arcLengthList[i] = arcLengthList[i] + 180;
                     handrail.SetAttribute("Arc_Length", arcLengthList[i]);
                     handrail.SetAttribute("thirdPost", 0);
                     ContourPoint tPoint = new ContourPoint(_tModel.ShiftHorizontallyRad(point1, (radius+25+10+50) + distanceFromStack + platformLength, 1, endAngle*Math.PI/180),null);
                
                     tPoint = _tModel.ShiftVertically(tPoint, 1075);
-                    tPoint = _tModel.ShiftAlongCircumferenceRad(tPoint, 35, 2);
+                    tPoint = _tModel.ShiftAlongCircumferenceRad(tPoint, 32, 2);
                     tPoint.Chamfer = new Chamfer(100, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING);
                     ContourPoint bPoint = new ContourPoint(_tModel.ShiftVertically(tPoint, -475), null);
               
