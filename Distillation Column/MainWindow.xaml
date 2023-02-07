@@ -42,6 +42,7 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="701" VerticalAlignment="Center" Width="345"/>
                     <ComboBox x:Name="ProjectsDropdown" HorizontalAlignment="Left" Margin="42,74,0,0" VerticalAlignment="Top" Width="262" Height="44" SelectionChanged="GetNewData" />
                     <Label Content="Select Project -" HorizontalAlignment="Left" Height="32" Margin="22,28,0,0" VerticalAlignment="Top" Width="132"/>
+                    <Button Content="Delete Project" HorizontalAlignment="Left" Height="44" Margin="51,601,0,0" VerticalAlignment="Top" Width="253" Click="DeleteProject" Background="#FFF57373"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="701" VerticalAlignment="Center" Width="345"/>
                     <Label Content="Add New Project -" HorizontalAlignment="Left" Height="32" Margin="370,28,0,0" VerticalAlignment="Top" Width="148"/>
                     <TextBox x:Name="NewProjectName" HorizontalAlignment="Center" Height="43" Margin="0,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
@@ -52,7 +53,7 @@
                     <TextBox x:Name="ImportProjectName" HorizontalAlignment="Left" Height="43" Margin="737,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
                     <Label Content="Enter Project name :" HorizontalAlignment="Left" Height="32" Margin="737,80,0,0" VerticalAlignment="Top" Width="148" FontWeight="Normal"/>
                     <Button Content="Import Project" HorizontalAlignment="Left" Height="44" Margin="737,171,0,0" VerticalAlignment="Top" Width="253" Click="ImportProject"/>
-
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="Stack">

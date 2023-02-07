@@ -300,6 +300,7 @@ namespace DistillationColumn
 
         public void IntializeCheckboxes()
         {
+            checkComponents.Clear();
             checkComponents.Add("stack", Check_Stack.IsChecked);
             checkComponents.Add("chair", Check_Chair.IsChecked);
             checkComponents.Add("access_door", Check_Access_Door.IsChecked);
@@ -363,6 +364,8 @@ namespace DistillationColumn
 
             ProjectsDropdown.Items.Refresh();
 
+            ImportProjectName.Text = "";
+
         }
 
         private void AddProject(object sender, RoutedEventArgs e)
@@ -386,6 +389,29 @@ namespace DistillationColumn
 
             ProjectsDropdown.Items.Refresh();
 
+            NewProjectName.Text = "";
+
+        }
+
+        private void DeleteProject(object sender, RoutedEventArgs e)
+        {
+            foreach(Projects project in projects) {
+                if(project.name == ProjectName.Text)
+                {
+                    File.Delete(project.file);
+
+                    ProjectsDropdown.SelectedIndex--;
+
+                    projects.Remove(project);
+
+                    JProjects["projects"] = JArray.Parse(JsonConvert.SerializeObject(projects));
+                    File.WriteAllText("projects.json", JProjects.ToString());
+
+                    ProjectsDropdown.Items.Refresh();
+
+                    break;
+                }
+            }
         }
     }
 }

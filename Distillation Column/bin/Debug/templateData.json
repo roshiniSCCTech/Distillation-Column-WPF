@@ -1,15 +1,11 @@
 {
-  "stack": [
-  ],
+  "stack": [],
   "Platform": [],
   "access_door": [],
   "instrumental_nozzle": [],
   "CircularAccessDoor": [],
-  "RectangularPlatform": {
-  },
-  "chair": {
-  },
+  "RectangularPlatform": {},
+  "chair": {},
   "Flange": [],
-  "stiffner_ring": {
-  }
+  "stiffner_ring": {}
 }
