@@ -124,6 +124,7 @@
     <Compile Include="Components\InstrumentNozzle.cs" />
     <Compile Include="Components\InstrumentNozzleData.cs" />
     <Compile Include="Components\Ladder.cs" />
+    <Compile Include="Components\OriginData.cs" />
     <Compile Include="Components\Platform.cs" />
     <Compile Include="Components\PlatformData.cs" />
     <Compile Include="Components\Projects.cs" />

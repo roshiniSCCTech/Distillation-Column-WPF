@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DistillationColumn"
         xmlns:ModelInternal="clr-namespace:Tekla.Structures.ModelInternal;assembly=Tekla.Structures.Model" x:Class="DistillationColumn.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="auto" Width="auto" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="TabItem">
             <Setter Property="Background" Value="Gray"/>
@@ -35,42 +35,49 @@
         </Style>
 
     </Window.Resources>
-    <Grid>
+    <Grid Height="800" Width="1200">
         <TabControl TabStripPlacement="Left" Background="Black" Margin="0,77,0,0">
             <TabItem Header="Projects">
-                <Grid Background="White" Width="1035.91">
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="701" VerticalAlignment="Center" Width="345"/>
+                <Grid Background="White">
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" MinHeight="720" VerticalAlignment="Center" Width="345"/>
                     <ComboBox x:Name="ProjectsDropdown" HorizontalAlignment="Left" Margin="42,74,0,0" VerticalAlignment="Top" Width="262" Height="44" SelectionChanged="GetNewData" />
                     <Label Content="Select Project -" HorizontalAlignment="Left" Height="32" Margin="22,28,0,0" VerticalAlignment="Top" Width="132"/>
                     <Button Content="Delete Project" HorizontalAlignment="Left" Height="44" Margin="51,601,0,0" VerticalAlignment="Top" Width="253" Click="DeleteProject" Background="#FFF57373"/>
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="701" VerticalAlignment="Center" Width="345"/>
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" MinHeight="720" VerticalAlignment="Center" Width="345"/>
                     <Label Content="Add New Project -" HorizontalAlignment="Left" Height="32" Margin="370,28,0,0" VerticalAlignment="Top" Width="148"/>
                     <TextBox x:Name="NewProjectName" HorizontalAlignment="Center" Height="43" Margin="0,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
                     <Label Content="Enter Project name :" HorizontalAlignment="Left" Height="32" Margin="391,80,0,0" VerticalAlignment="Top" Width="148" FontWeight="Normal"/>
                     <Button Content="Add Project" HorizontalAlignment="Center" Height="44" Margin="0,171,0,0" VerticalAlignment="Top" Width="253" Click="AddProject"/>
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="701" VerticalAlignment="Center" Width="345" Margin="691,0,0,0"/>
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" MinHeight="720" VerticalAlignment="Center" Width="345" Margin="691,0,0,0"/>
                     <Label Content="Import New Project -" HorizontalAlignment="Left" Height="32" Margin="725,28,0,0" VerticalAlignment="Top" Width="173"/>
                     <TextBox x:Name="ImportProjectName" HorizontalAlignment="Left" Height="43" Margin="737,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
                     <Label Content="Enter Project name :" HorizontalAlignment="Left" Height="32" Margin="737,80,0,0" VerticalAlignment="Top" Width="148" FontWeight="Normal"/>
                     <Button Content="Import Project" HorizontalAlignment="Left" Height="44" Margin="737,171,0,0" VerticalAlignment="Top" Width="253" Click="ImportProject"/>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem Header="Stack">
                 <Grid Background="White">
-                    <Button x:Name="StackAddRowTop" Content="Add Row" HorizontalAlignment="Left" Height="31" Margin="67,84,0,0" VerticalAlignment="Top" Width="110" Click="addRowTopForStack"/>
-                    <Button x:Name="StackDeleteRowTop" Content="Delete Row" HorizontalAlignment="Left" Height="31" Margin="226,84,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowTopForStack"/>
-                    <DataGrid x:Name="StackGrid" Height="453" Margin="67,120,68,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False" Grid.ColumnSpan="2">
+                    <Button x:Name="StackAddRowTop" Content="Add Row" HorizontalAlignment="Left" Height="31" Margin="67,144,0,0" VerticalAlignment="Top" Width="110" Click="addRowTopForStack"/>
+                    <Button x:Name="StackDeleteRowTop" Content="Delete Row" HorizontalAlignment="Left" Height="31" Margin="217,144,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowTopForStack"/>
+                    <DataGrid x:Name="StackGrid" Height="453" Margin="67,180,269,0" VerticalAlignment="Top"  ColumnWidth="*" AutoGenerateColumns="False" CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding key}"/>
-                            <DataGridTextColumn Header="Height" Binding="{Binding seg_height}" Width="150"/>
-                            <DataGridTextColumn Header="Bottom Diameter" Binding="{Binding inside_dia_bottom}" Width="150"/>
-                            <DataGridTextColumn Header="Top Diameter" Binding="{Binding inside_dia_top}" Width="150"/>
-                            <DataGridTextColumn Header="Thickness" Binding="{Binding shell_thickness}" Width="150"/>
+                            <DataGridTextColumn Header="ID" Binding="{Binding key}" Width="50"/>
+                            <DataGridTextColumn Header="Height" Binding="{Binding seg_height}" Width="*"/>
+                            <DataGridTextColumn Header="Bottom Diameter" Binding="{Binding inside_dia_bottom}" Width="*"/>
+                            <DataGridTextColumn Header="Top Diameter" Binding="{Binding inside_dia_top}" Width="*"/>
+                            <DataGridTextColumn Header="Thickness" Binding="{Binding shell_thickness}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="StackAddRowBottom" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,578,0,0" VerticalAlignment="Top" Width="110" Click="addRowBottomForStack"/>
-                    <Button x:Name="StackDeleteRowBottom" Content="Delete Row" HorizontalAlignment="Left" Height="30" Margin="226,578,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowBottomForStack"/>
+                    <Button x:Name="StackAddRowBottom" Content="Add Row" HorizontalAlignment="Left" Height="30" Margin="67,638,0,0" VerticalAlignment="Top" Width="110" Click="addRowBottomForStack"/>
+                    <Button x:Name="StackDeleteRowBottom" Content="Delete Row" HorizontalAlignment="Left" Height="30" Margin="217,638,0,0" VerticalAlignment="Top" Width="110" Click="deleteRowBottomForStack"/>
+                    <TextBox x:Name="OriginX" Text="{Binding x}" HorizontalAlignment="Left" Height="29" Margin="150,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
+                    <TextBox x:Name="OriginY" Text="{Binding y}" HorizontalAlignment="Left" Height="29" Margin="300,70,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="125"/>
+                    <TextBox x:Name="OriginZ" Text="{Binding z}" HorizontalAlignment="Left" Height="29" Margin="450,70,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="125"/>
+                    <TextBlock HorizontalAlignment="Left" Height="29" Margin="67,70,0,0" TextWrapping="Wrap" Text="Origin :" VerticalAlignment="Top" Width="70" FontWeight="Normal"/>
+                    <TextBlock HorizontalAlignment="Left" Height="24" Margin="208,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontWeight="Normal" RenderTransformOrigin="0.811,0.585"><Run Language="en-in" Text="X"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="24" Margin="357,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontWeight="Normal" RenderTransformOrigin="0.811,0.585"><Run Language="en-in" Text="Y"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="24" Margin="504,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontWeight="Normal" RenderTransformOrigin="0.811,0.585"><Run Language="en-in" Text="Z"/></TextBlock>
                 </Grid>
             </TabItem>
             <TabItem Header="Chair">
@@ -124,7 +131,7 @@
                             <DataGridTextColumn Header="Inside Distance" Binding="{Binding inside_distance}" Width="150"/>
                             <DataGridTextColumn Header="Ring Width" Binding="{Binding ring_width}" Width="150"/>
                             <DataGridTextColumn Header="Top Ring Thickness" Binding="{Binding top_ring_thickness}" Width="150"/>
-                            <DataGridTextColumn Header="Bottom Ring Thickness" Binding="{Binding bottom_ring_thickness}" Width="150"/>
+                            <DataGridTextColumn Header="Bottom Ring Thickness" Binding="{Binding bottom_ring_thickness}" Width="170"/>
 
                             <DataGridTemplateColumn Header="Delete" >
                                 <DataGridTemplateColumn.CellTemplate>
@@ -245,7 +252,6 @@
             </TabItem>
             <TabItem Header="Select Component" >
                 <Grid Background="#FFE5E5E5">
-                    <CheckBox x:Name="Check_Stack" Content="Stack" HorizontalAlignment="Left" Margin="109,51,0,0" VerticalAlignment="Top" Width="132" Height="37" FontSize="18" />
                     <CheckBox x:Name="Check_Chair" Content="Chair" HorizontalAlignment="Left" Margin="109,90,0,0" VerticalAlignment="Top" Width="99" Height="36" FontSize="18"/>
                     <CheckBox x:Name="Check_Access_Door" Content="Access Door" HorizontalAlignment="Left" Margin="109,129,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.RowSpan="2"/>
                     <CheckBox x:Name="Check_Distillation_Flange" Content="Distillation_Flange" HorizontalAlignment="Left" Margin="109,168,0,0" VerticalAlignment="Top" Width="160" Height="36" FontSize="18"/>
@@ -253,9 +259,9 @@
                     <CheckBox x:Name="Check_Platform" Content="Platform" HorizontalAlignment="Left" Margin="368,90,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
                     <CheckBox x:Name="Check_HandRail" Content="Handrail" HorizontalAlignment="Left" Margin="368,129,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18"/>
                     <CheckBox x:Name="Check_Circular_Access_Door" Content="Circular Access Door" HorizontalAlignment="Left" Margin="368,168,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18" Grid.RowSpan="2"/>
-                    <CheckBox x:Name="Check_Rectangular_Platform" Content="Rectangular Platform" HorizontalAlignment="Left" Margin="368,246,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_Rectangular_Platform" Content="Rectangular Platform" HorizontalAlignment="Left" Margin="368,51,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
                     <CheckBox x:Name="Check_Cap_and_Outlets" Content="Cap and Outlets" HorizontalAlignment="Left" Margin="109,246,0,0" VerticalAlignment="Top" Width="160" Height="36" FontSize="18"/>
-                    <CheckBox x:Name="Check_Ladder" Content="Ladder" HorizontalAlignment="Left" Margin="368,51,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.Row="1"/>
+                    <CheckBox x:Name="Check_Ladder" Content="Ladder" HorizontalAlignment="Left" Margin="109,51,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.Row="1"/>
                     <CheckBox x:Name="Check_Instrument_Nozzle" Content="Instrument Nozzle" HorizontalAlignment="Left" Margin="368,207,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
                     <Button x:Name="Check_CreateModel" Content="Create Model" HorizontalAlignment="Left" Height="52" Margin="715,629,0,0" VerticalAlignment="Top" Width="203" Click="createModel"/>
                 </Grid>

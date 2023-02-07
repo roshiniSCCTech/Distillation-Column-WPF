@@ -33,6 +33,7 @@ namespace DistillationColumn
         JObject JProjects;
         List<Projects> projects = new List<Projects>();
 
+        OriginData originData= new OriginData();
         List<StackData> stackDatas = new List<StackData>();
         List<CircularAccessData> circularAccessDatas = new List<CircularAccessData>();
         List<InstrumentNozzleData> instrumentNozzleDatas= new List<InstrumentNozzleData>();
@@ -73,7 +74,10 @@ namespace DistillationColumn
             InstrumentNozleGrid.ItemsSource = instrumentNozzleDatas;
             AccessDoorGrid.ItemsSource = accessDoorDatas;
             PlatformGrid.ItemsSource = platformDatas;
-            flangeGrid.ItemsSource = flangeDatas;      
+            flangeGrid.ItemsSource = flangeDatas;
+            OriginX.DataContext = originData;
+            OriginY.DataContext = originData;
+            OriginZ.DataContext = originData;
 
             BindRecPlatformData();
             BindChairData();
@@ -110,7 +114,10 @@ namespace DistillationColumn
         {
             string jDataString = File.ReadAllText(jsonFileName);
             JData = JObject.Parse(jDataString);
-            
+
+            // origin data
+            originData = JsonConvert.DeserializeObject<OriginData> (JData["origin"].ToString());
+
             // data for stack 
             stackDatas = JsonConvert.DeserializeObject<List<StackData>>(JData["stack"].ToString());
 
@@ -142,6 +149,9 @@ namespace DistillationColumn
 
         private void setJSONData()
         {
+            // set data for origin
+            JData["origin"] = JObject.Parse(JsonConvert.SerializeObject(originData));
+
             //set Json Data for Stack
             JData["stack"] = JArray.Parse(JsonConvert.SerializeObject(stackDatas));
            
@@ -301,7 +311,6 @@ namespace DistillationColumn
         public void IntializeCheckboxes()
         {
             checkComponents.Clear();
-            checkComponents.Add("stack", Check_Stack.IsChecked);
             checkComponents.Add("chair", Check_Chair.IsChecked);
             checkComponents.Add("access_door", Check_Access_Door.IsChecked);
             checkComponents.Add("flange", Check_Distillation_Flange.IsChecked);

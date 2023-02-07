@@ -8,6 +8,7 @@ using TSM = Tekla.Structures.Model;
 using T3D = Tekla.Structures.Geometry3d;
 using Newtonsoft.Json.Linq;
 using Tekla.Structures.Model;
+using Newtonsoft.Json;
 
 namespace DistillationColumn
 {
@@ -32,7 +33,7 @@ namespace DistillationColumn
 
         public Globals(JObject jData)
         {
-            Origin = new TSM.ContourPoint(new T3D.Point(4000, 8000, 10000), null);
+            Origin = new TSM.ContourPoint(new T3D.Point(Convert.ToDouble(jData["origin"]["x"].ToString()), Convert.ToDouble(jData["origin"]["y"].ToString()), Convert.ToDouble(jData["origin"]["z"].ToString())), null);
             ProfileStr = "";
             ClassStr = "";
             NameStr = "";
