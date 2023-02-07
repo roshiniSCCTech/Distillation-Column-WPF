@@ -1,0 +1,12 @@
+{
+  "projects": [
+    {
+      "name": "Project1",
+      "file": "Data.json"
+    },
+    {
+      "name": "Test1",
+      "file": "testData.json"
+    }
+  ]
+}

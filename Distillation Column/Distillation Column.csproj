@@ -126,6 +126,7 @@
     <Compile Include="Components\Ladder.cs" />
     <Compile Include="Components\Platform.cs" />
     <Compile Include="Components\PlatformData.cs" />
+    <Compile Include="Components\Projects.cs" />
     <Compile Include="Components\RectangularPlatform.cs" />
     <Compile Include="Components\RectangularPlatformData.cs" />
     <Compile Include="Components\Stack.cs" />
@@ -163,7 +164,9 @@
     <None Include="bin\Debug\CustomComponents\Ladder1.uel" />
     <None Include="bin\Debug\CustomComponents\LadderHoop.uel" />
     <None Include="bin\Debug\CustomComponents\Platform_BracketFinal .uel" />
+    <None Include="bin\Debug\projects.json" />
     <None Include="bin\Debug\CustomComponents\Rectangular_Handrail.uel" />
+    <None Include="bin\Debug\templateData.json" />
     <None Include="bin\Debug\testData.json" />
     <None Include="bin\Debug\Data.json" />
     <None Include="packages.config" />

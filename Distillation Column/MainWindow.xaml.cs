@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections;
+using RenderData;
+using Microsoft.Win32;
 //using DistillationColumn.Components;
 
 namespace DistillationColumn
@@ -28,6 +30,9 @@ namespace DistillationColumn
         Globals _global;
         TeklaModelling _tModel;
         JObject JData;
+        JObject JProjects;
+        List<Projects> projects = new List<Projects>();
+
         List<StackData> stackDatas = new List<StackData>();
         List<CircularAccessData> circularAccessDatas = new List<CircularAccessData>();
         List<InstrumentNozzleData> instrumentNozzleDatas= new List<InstrumentNozzleData>();
@@ -46,24 +51,35 @@ namespace DistillationColumn
         {
             InitializeComponent();
 
+
+            // data for projects
+            string jProjectsString = File.ReadAllText("projects.json");
+            JProjects = JObject.Parse(jProjectsString);
+            projects = JsonConvert.DeserializeObject<List<Projects>>(JProjects["projects"].ToString());
+            ProjectsDropdown.ItemsSource = projects;
+            ProjectsDropdown.DisplayMemberPath = "name";
+            ProjectsDropdown.SelectedIndex = 0;
+            ProjectName.Text = ProjectsDropdown.Text;
+
+            InitialiseData();
+        }
+
+        private void InitialiseData()
+        {
             getJSONData();
 
             StackGrid.ItemsSource = stackDatas;
-            CircularAccessGrid.ItemsSource= circularAccessDatas;
-            InstrumentNozleGrid.ItemsSource= instrumentNozzleDatas;
-            AccessDoorGrid.ItemsSource= accessDoorDatas;
+            CircularAccessGrid.ItemsSource = circularAccessDatas;
+            InstrumentNozleGrid.ItemsSource = instrumentNozzleDatas;
+            AccessDoorGrid.ItemsSource = accessDoorDatas;
             PlatformGrid.ItemsSource = platformDatas;
-            flangeGrid.ItemsSource = flangeDatas;
-
+            flangeGrid.ItemsSource = flangeDatas;      
 
             BindRecPlatformData();
             BindChairData();
             BindStiffnerRingData();
-           
-
-
-
         }
+
         private void BindRecPlatformData()
         {
             Height.DataContext = rectPlatformData;
@@ -94,10 +110,9 @@ namespace DistillationColumn
         {
             string jDataString = File.ReadAllText(jsonFileName);
             JData = JObject.Parse(jDataString);
-
+            
             // data for stack 
             stackDatas = JsonConvert.DeserializeObject<List<StackData>>(JData["stack"].ToString());
-
 
             //data for Circular Access Door
             circularAccessDatas = JsonConvert.DeserializeObject<List<CircularAccessData>>(JData["CircularAccessDoor"].ToString());
@@ -154,9 +169,6 @@ namespace DistillationColumn
 
             // set data for  flange
             JData["Flange"] = JArray.Parse(JsonConvert.SerializeObject(flangeDatas));
-
-
-
 
             File.WriteAllText(jsonFileName, JData.ToString());
 
@@ -217,6 +229,7 @@ namespace DistillationColumn
             });
             CircularAccessGrid.Items.Refresh();
         }   
+
         private void addRowforInstrumentNozzle(object sender, RoutedEventArgs e)
         {
             instrumentNozzleDatas.Add(new InstrumentNozzleData()
@@ -277,6 +290,7 @@ namespace DistillationColumn
             Distance_between_Plates.DataContext = chairDatas;
             ChairHeight.DataContext = chairDatas;
         }
+
         public void BindStiffnerRingData()
         {
             StartHeight.DataContext = ringDatas;
@@ -299,6 +313,7 @@ namespace DistillationColumn
             checkComponents.Add("ladder", Check_Ladder.IsChecked);
             checkComponents.Add("circular_access_door", Check_Circular_Access_Door.IsChecked);
         }
+
         private void addRowFlange(object sender, RoutedEventArgs e)
         {
             flangeDatas.Add(new FlangeData()
@@ -312,6 +327,65 @@ namespace DistillationColumn
                 ring_width = 0,
             });
             flangeGrid.Items.Refresh();
+        }
+
+        private void GetNewData(object sender, SelectionChangedEventArgs e)
+        {
+            Projects p = (Projects)ProjectsDropdown.SelectedItem;
+            ProjectName.Text = p.name;
+            jsonFileName = p.file;
+
+            InitialiseData();
+        }
+
+        private void ImportProject(object sender, RoutedEventArgs e)
+        {
+            // get new file
+
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+            openFileDlg.Filter = "Json file (*.json)|*.json";
+            openFileDlg.ShowDialog();
+
+            File.WriteAllText(openFileDlg.SafeFileName, File.ReadAllText(openFileDlg.FileName));
+
+            // add file to projects list in projects.json
+
+            projects.Add(new Projects()
+            {
+                name = ImportProjectName.Text,
+                file = openFileDlg.SafeFileName,
+            });
+
+            JProjects["projects"] = JArray.Parse(JsonConvert.SerializeObject(projects));
+            File.WriteAllText("projects.json", JProjects.ToString());
+
+            // update projects drop down
+
+            ProjectsDropdown.Items.Refresh();
+
+        }
+
+        private void AddProject(object sender, RoutedEventArgs e)
+        {
+            // create new file
+
+            File.WriteAllText(NewProjectName.Text + "Data.json", File.ReadAllText("templateData.json"));
+
+            // add file to projects list in projects.json
+
+            projects.Add(new Projects()
+            {
+                name = NewProjectName.Text,
+                file = NewProjectName.Text + "Data.json",
+            });
+
+            JProjects["projects"] = JArray.Parse(JsonConvert.SerializeObject(projects));
+            File.WriteAllText("projects.json", JProjects.ToString());
+
+            // update projects drop down
+
+            ProjectsDropdown.Items.Refresh();
+
         }
     }
 }
