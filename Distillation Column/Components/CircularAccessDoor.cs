@@ -480,7 +480,7 @@ namespace DistillationColumn
             // hinge rod
 
             TSM.ContourPoint plateOrigin1 = _tModel.ShiftHorizontallyRad(stackOrigin, stackRadius, 1, orientationAngle);
-            TSM.ContourPoint hingeRodMidPoint = _tModel.ShiftHorizontallyRad(plateOrigin1, horizontalHingedDistance, 2, orientationAngle);
+            TSM.ContourPoint hingeRodMidPoint = _tModel.ShiftHorizontallyRad(plateOrigin1, plateRadius + 170, 2, orientationAngle);
             hingeRodMidPoint = _tModel.ShiftHorizontallyRad(hingeRodMidPoint, widthofNeckPlate + widthofLiningPlate, 1, orientationAngle);
 
             TSM.ContourPoint hingeRodPoint1 = _tModel.ShiftVertically(hingeRodMidPoint, hingeddistancefromcoverPlate);
@@ -501,9 +501,8 @@ namespace DistillationColumn
 
             plateOrigin = _tModel.ShiftHorizontallyRad(plateOrigin, widthofLiningPlate, 1, orientationAngle);
 
-            double hingedAngle = Math.Asin(hingeddistancefromcoverPlate / plateRadius);
 
-            TSM.ContourPoint hingedOrigin = _tModel.ShiftHorizontallyRad(hingeRodPoint1, hingeddistancefromcoverPlate + coverPlateThickness, 4, orientationAngle);
+            TSM.ContourPoint hingedOrigin = _tModel.ShiftHorizontallyRad(hingeRodPoint1, ((plateRadius + 170) - plateRadius) + coverPlateThickness + plateThickness, 4, orientationAngle);
             TSM.ContourPoint upPoint = _tModel.ShiftHorizontallyRad(hingedOrigin, (hingedDiameter / 2), 3, orientationAngle);
             TSM.ContourPoint downPoint = _tModel.ShiftHorizontallyRad(hingedOrigin, (hingedDiameter / 2), 1, orientationAngle);
             TSM.ContourPoint downRight = _tModel.ShiftHorizontallyRad(hingeRodPoint1, (hingedDiameter / 2), 1, orientationAngle);
@@ -527,9 +526,8 @@ namespace DistillationColumn
 
             //bottom horizontal hinge plate
 
-            hingedAngle = Math.Asin(-(hingeddistancefromcoverPlate) / plateRadius);
 
-            hingedOrigin = _tModel.ShiftHorizontallyRad(hingeRodPoint2, hingeddistancefromcoverPlate + coverPlateThickness, 4, orientationAngle);
+            hingedOrigin = _tModel.ShiftHorizontallyRad(hingeRodPoint2, ((plateRadius + 170) - plateRadius) + plateThickness + coverPlateThickness, 4, orientationAngle);
 
             upPoint = _tModel.ShiftHorizontallyRad(hingedOrigin, (hingedDiameter / 2), 3, orientationAngle);
             downPoint = _tModel.ShiftHorizontallyRad(hingedOrigin, (hingedDiameter / 2), 1, orientationAngle);
@@ -554,7 +552,7 @@ namespace DistillationColumn
 
             //top vertical hinge plate
 
-            double angle1 = (horizontalHingedDistance / stackRadius);
+            double angle1 = ((plateRadius + 170) / stackRadius);
             TSM.ContourPoint padMidPoint = _tModel.ShiftAlongCircumferenceRad(plateOrigin1, angle1, 1);
             padMidPoint = _tModel.ShiftVertically(padMidPoint, hingeddistancefromcoverPlate);
             TSM.ContourPoint plateLeftPoint = _tModel.ShiftHorizontallyRad(padMidPoint, hingedDiameter / 2, 4);
