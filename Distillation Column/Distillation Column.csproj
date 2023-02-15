@@ -121,6 +121,7 @@
     <Compile Include="Components\GeometricalHelperClass.cs" />
     <Compile Include="Components\Globals.cs" />
     <Compile Include="Components\Handrail.cs" />
+    <Compile Include="Components\HandRailTypeFirst.cs" />
     <Compile Include="Components\ImportCustomComponent.cs" />
     <Compile Include="Components\InstrumentNozzle.cs" />
     <Compile Include="Components\InstrumentNozzleData.cs" />
