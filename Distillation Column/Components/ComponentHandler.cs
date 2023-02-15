@@ -40,7 +40,8 @@ namespace DistillationColumn
             }
             if (checkComponents["handrail"].Value)
             {
-                new Handrail(_global, _tModel);
+                new HandRailTypeFirst(_global, _tModel);
+                //new Handrail(_global, _tModel);
             }
             if (checkComponents["circular_access_door"].Value)
             {

@@ -1,8 +1,8 @@
 {
   "origin": {
-    "x": 1000.0,
-    "y": 0.0,
-    "z": 4000.0
+    "x": 5000.0,
+    "y": 7000.0,
+    "z": 5000.0
   },
   "stack": [
     {
@@ -226,18 +226,18 @@
   "Platform": [
     {
       "Elevation": 5000.0,
-      "Orientation_Angle": 60.0,
+      "Orientation_Angle": 150.0,
       "Platform_Width": 990.0,
       "Platform_Length": 1200.0,
       "Platform_Start_Angle": 0.0,
-      "Platfrom_End_Angle": 170.0,
+      "Platfrom_End_Angle": 300.0,
       "Distance_From_Stack": 200.0,
       "Gap_Between_Grating_Plate": 6.0,
       "Grating_Thickness": 25.0,
       "Rungs_spacing": 500.0,
       "Extended_Length": 1000.0,
-      "Extended_Start_Angle": 140.0,
-      "Extended_End_Angle": 170.0,
+      "Extended_Start_Angle": 100.0,
+      "Extended_End_Angle": 200.0,
       "Obstruction_Distance": 200.0
     },
     {

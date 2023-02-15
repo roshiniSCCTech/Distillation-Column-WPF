@@ -69,6 +69,15 @@ namespace DistillationColumn
                 obstructionDistance = grating[10];
 
                 HandrailAtLadderLocation();
+                radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
+                if (platformStartAngle!=extensionStartAngle)
+                {
+                    CreateSideHandrail(platformStartAngle);
+                }
+                if(platformEndAngle!=extensionEndAngle)
+                {
+                    CreateSideHandrail(platformEndAngle);
+                }
 
                 // first half of platform
 
@@ -113,7 +122,7 @@ namespace DistillationColumn
 
                 }
 
-                //CreateBrackets2();
+                
             }
         }
 
@@ -847,6 +856,50 @@ namespace DistillationColumn
             
 
            
+
+        }
+
+        public void CreateSideHandrail(double angle)
+        {
+            ContourPoint point = new ContourPoint((_tModel.ShiftVertically(_global.Origin, elevation)), null);
+            ContourPoint point1 = new ContourPoint((_tModel.ShiftHorizontallyRad(point, radius + obstructionDistance + 250, 1, (angle * Math.PI / 180))), null);
+            ContourPoint point2 = new ContourPoint();
+            if (angle == platformStartAngle)
+            {
+                point1 = _tModel.ShiftHorizontallyRad(point1, 70, 4);
+                point2 = new ContourPoint((_tModel.ShiftHorizontallyRad(point1, 35, 2)), null);
+                CreateWeld(point2, 2, angle);
+            }
+            else
+            {
+                point1 = _tModel.ShiftAlongCircumferenceRad(point1, 70, 2);
+                point2 = new ContourPoint((_tModel.ShiftHorizontallyRad(point1, 35, 4)), null);
+                CreateWeld(point2, 2, angle);
+            }
+
+            // ContourPoint point1 = new ContourPoint((_tModel.ShiftHorizontallyRad(point, radius+obstructionDistance+250 , 1, (angle * Math.PI / 180))), null);
+             
+            CustomPart CPart = new CustomPart();
+            CPart.Name = "Rectangular_Handrail";
+            CPart.Number = BaseComponent.CUSTOM_OBJECT_NUMBER;
+            double t = (70 / (radius + obstructionDistance ))*(180/Math.PI);
+            CPart.Position.Plane = Position.PlaneEnum.RIGHT;
+            CPart.Position.PlaneOffset = t;
+            CPart.Position.Depth = Position.DepthEnum.FRONT;
+            
+            CPart.Position.Rotation = Position.RotationEnum.TOP;
+            
+            CPart.SetInputPositions(point1, point2); 
+            CPart.SetAttribute("width", 35);
+            CPart.SetAttribute("distance", (platformLength - 500));
+            
+            bool b = CPart.Insert();
+            CPart.SetAttribute("P2", 0);
+            
+            CPart.Modify();
+            _tModel.Model.CommitChanges();
+           
+
 
         }
 
