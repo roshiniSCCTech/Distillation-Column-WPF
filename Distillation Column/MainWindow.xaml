@@ -233,11 +233,13 @@
             </TabItem>
             <TabItem Header="Instrument Nozzle" >
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="InstrumentNozleGrid" HorizontalAlignment="Left" Height="453" Margin="67,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False" Grid.ColumnSpan="2">
+                    <DataGrid x:Name="InstrumentNozleGrid" HorizontalAlignment="Left" Height="453" Margin="67,120,0,0" VerticalAlignment="Top" ColumnWidth="*" AutoGenerateColumns="False" CanUserAddRows="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="120" />
-                            <DataGridTextColumn Header="Orientation Angle" Binding="{Binding orientation_angle}" Width="170"/>
+                            <DataGridTextColumn Header="Elevation of Nozzle" Binding="{Binding elevation}" Width="*" />
+                            <DataGridTextColumn Header="Orientation Angle of Nozzle" Binding="{Binding orientation_angle}" Width="230"/>
+                            <DataGridTextColumn Header="Number of Bolts" Binding="{Binding number_of_bolts}" Width="*"/>
+                            <DataGridTextColumn Header="Pipe Length" Binding="{Binding pipe_length}" Width="*"/>
                             <DataGridTemplateColumn Header="Delete" >
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

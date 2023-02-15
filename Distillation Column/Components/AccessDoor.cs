@@ -97,7 +97,7 @@ namespace DistillationColumn
       List<JToken> accessDoorList = _global.JData["access_door"].ToList();
       foreach (JToken accessDoor in accessDoorList)
       {
-          elevation = (float)accessDoor["elevation"];
+         elevation = (float)accessDoor["elevation"];
          orientationAngle = (float)accessDoor["orientation_angle"];
          height = (float)accessDoor["height"];
          width = (float)accessDoor["width"];

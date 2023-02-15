@@ -47,10 +47,10 @@ namespace DistillationColumn
             //elevation=60000;
             pipeDiameter = 50;
             plateRadius = 50;
-            pipeLength = 100;
+            //pipeLength = 100;
             pipeThickness = 5;
             plateThickness = 10;          
-            numberOfBolts = 6;
+            //numberOfBolts = 6;
             pipeStartPoint = new TSM.ContourPoint();
             pipeEndPoint = new TSM.ContourPoint();
             _pointsList= new List<TSM.ContourPoint>();
@@ -64,10 +64,14 @@ namespace DistillationColumn
             List<JToken> instrumentNozzleList = _global.JData["instrumental_nozzle"].ToList();
             foreach (JToken instrumentnozzle in instrumentNozzleList)
             {
-                double elevation = (float)instrumentnozzle["elevation"];
-                double orientationAngle = (float)instrumentnozzle["orientation_angle"];
+                elevation = (float)instrumentnozzle["elevation"];
+                orientationAngle = (float)instrumentnozzle["orientation_angle"];
+                numberOfBolts = (float)instrumentnozzle["number_of_bolts"];
+                pipeLength= (float)instrumentnozzle["pipe_length"];
 
-                _instrumentNozzleList.Add(new List<double> { elevation, orientationAngle });
+
+
+                _instrumentNozzleList.Add(new List<double> { elevation, orientationAngle,numberOfBolts,pipeLength});
 
             }
 
@@ -75,6 +79,8 @@ namespace DistillationColumn
             {
                 elevation = instrumentNozzle[0];
                 orientationAngle = instrumentNozzle[1];
+                numberOfBolts = instrumentNozzle[2];
+                pipeLength = instrumentNozzle[3];
                 CreateNozzle();
             }
         }
