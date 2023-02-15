@@ -115,6 +115,7 @@
     <Compile Include="Components\CircularAccessData.cs" />
     <Compile Include="Components\CircularAccessDoor.cs" />
     <Compile Include="Components\ComponentHandler.cs" />
+    <Compile Include="Components\Duct.cs" />
     <Compile Include="Components\Flange.cs" />
     <Compile Include="Components\FlangeData.cs" />
     <Compile Include="Components\GeometricalHelperClass.cs" />
@@ -161,7 +162,9 @@
     <None Include="bin\Debug\CustomComponents\AccessDoor.uel" />
     <None Include="bin\Debug\CustomComponents\Chair_s.uel" />
     <None Include="bin\Debug\CustomComponents\custom_flange.uel" />
+    <None Include="bin\Debug\CustomComponents\duct.uel" />
     <None Include="bin\Debug\CustomComponents\Final_HandRail.uel" />
+    <None Include="bin\Debug\CustomComponents\HingedAccessDoorTapered.uel" />
     <None Include="bin\Debug\CustomComponents\Ladder1.uel" />
     <None Include="bin\Debug\CustomComponents\LadderHoop.uel" />
     <None Include="bin\Debug\CustomComponents\Platform_BracketFinal .uel" />

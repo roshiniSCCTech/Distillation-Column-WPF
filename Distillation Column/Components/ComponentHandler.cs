@@ -16,7 +16,8 @@ namespace DistillationColumn
         public ComponentHandler(Globals global, TeklaModelling teklaModel, Dictionary<string, bool?> checkComponents)
         {
             _global = global;
-            _tModel = teklaModel; new ImportCustomComponent(_global, _tModel);
+            _tModel = teklaModel; 
+            new ImportCustomComponent(_global, _tModel);
             new Stack(_global, _tModel);
             if (checkComponents["chair"].Value)
             {
@@ -62,6 +63,8 @@ namespace DistillationColumn
             {
                 new InstrumentNozzle(_global, _tModel);
             }
+            new Duct(_global, _tModel);
+
         }
     }
 }
