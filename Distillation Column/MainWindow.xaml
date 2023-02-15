@@ -78,6 +78,7 @@
                     <TextBlock HorizontalAlignment="Left" Height="24" Margin="208,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontWeight="Normal" RenderTransformOrigin="0.811,0.585"><Run Language="en-in" Text="X"/></TextBlock>
                     <TextBlock HorizontalAlignment="Left" Height="24" Margin="357,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontWeight="Normal" RenderTransformOrigin="0.811,0.585"><Run Language="en-in" Text="Y"/></TextBlock>
                     <TextBlock HorizontalAlignment="Left" Height="24" Margin="504,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontWeight="Normal" RenderTransformOrigin="0.811,0.585"><Run Language="en-in" Text="Z"/></TextBlock>
+                    <Label Content="Note- Units of all input data are in MM" HorizontalAlignment="Left" Margin="484,665,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.679,2.049"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Chair">
@@ -92,9 +93,9 @@
                     <TextBox x:Name="Distance_between_Plates" HorizontalAlignment="Left" Margin="278,209,0,0" TextWrapping="Wrap" Text="{Binding distance_between_stiffner_plates}" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Stiffner Count" HorizontalAlignment="Left" Margin="65,245,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="Stiffner_Count" HorizontalAlignment="Left" Margin="278,249,0,0" TextWrapping="Wrap" Text="{Binding number_of_plates}" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="Width" HorizontalAlignment="Left" Margin="65,285,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Ring Width" HorizontalAlignment="Left" Margin="65,285,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="ChairWidth" HorizontalAlignment="Left" Margin="278,289,0,0" TextWrapping="Wrap" Text="{Binding width }" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="Height" HorizontalAlignment="Left" Margin="65,325,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Chair Height" HorizontalAlignment="Left" Margin="65,325,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="ChairHeight" HorizontalAlignment="Left" Margin="278,329,0,0" TextWrapping="Wrap" Text="{Binding height }" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Inside Distance" HorizontalAlignment="Left" Margin="65,365,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="Inside_Distance" HorizontalAlignment="Left" Margin="278,369,0,0" TextWrapping="Wrap" Text="{Binding inside_distance }" VerticalAlignment="Top" Width="120"/>
