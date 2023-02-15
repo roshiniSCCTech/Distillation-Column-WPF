@@ -43,7 +43,7 @@ namespace DistillationColumn
         double length;
         double ladderWidth = 470;
         double theta;
-        string MidRailProfile = "FB50*6";
+        string MidRailProfile = "L50*50*6";
         string TopRailProfile = "L50*50*6";
         string VerticalPostProfile = "L50*50*6";
         List<double> arcLengthList = new List<double>();
@@ -96,47 +96,69 @@ namespace DistillationColumn
                 }
 
 
-                // first half of platform
-
-                startAngle = platformStartAngle;
-                endAngle = extensionStartAngle;
-                length = platformLength;
-                radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
-                gratingOuterRadius = radius+ distanceFromStack+length;
-
-
-
-                if (startAngle != endAngle)
+                if (extensionEndAngle - extensionStartAngle != 0)
                 {
-                    ShiftAngle();
-                    CreateHandrail();
+
+
+                    // first half of platform
+
+                        startAngle = platformStartAngle;
+                        endAngle = extensionStartAngle;
+                        length = platformLength;
+                        radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
+                        gratingOuterRadius = radius + distanceFromStack + length;
+
+
+
+                        if (startAngle != endAngle)
+                        {
+                            ShiftAngle();
+                            CreateHandrail();
+                        }
+
+                        // extension
+
+                        startAngle = extensionStartAngle;
+                        endAngle = extensionEndAngle;
+                        length = platformLength + extensionLength;
+
+                        if (startAngle != endAngle)
+                        {
+                            ShiftAngle();
+                            CreateHandrail();
+
+                        }
+
+
+                        // second half of platform
+
+                        startAngle = extensionEndAngle;
+                        endAngle = platformEndAngle;
+                        length = platformLength;
+
+                        if (startAngle != endAngle)
+                        {
+                            ShiftAngle();
+                            CreateHandrail();
+
+                        }
+
                 }
-
-                // extension
-
-                startAngle = extensionStartAngle;
-                endAngle = extensionEndAngle;
-                length = platformLength + extensionLength;
-
-                if (startAngle != endAngle)
+                else
                 {
-                    ShiftAngle();
-                    CreateHandrail();
+                    startAngle = platformStartAngle;
+                    endAngle =platformEndAngle;
+                    length = platformLength;
+                    radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
+                    gratingOuterRadius = radius + distanceFromStack + length;
 
-                }
 
 
-                // second half of platform
-
-                startAngle = extensionEndAngle;
-                endAngle = platformEndAngle;
-                length = platformLength;
-
-                if (startAngle != endAngle)
-                {
-                    ShiftAngle();
-                    CreateHandrail();
-
+                    if (startAngle != endAngle)
+                    {
+                        ShiftAngle();
+                        CreateHandrail();
+                    }
                 }
              
                 
@@ -470,12 +492,19 @@ namespace DistillationColumn
             _pointsList.Add(point4);
             _pointsList.Add(point3);
             
-            if(MidRailProfile!="FB50*6")
+            if(MidRailProfile!="FB50*6" && type1=="MidRailProfile")
             {
                 ContourPlate cut = _tModel.CreateContourPlate(_pointsList, "PL6", "IS2062", BooleanPart.BooleanOperativeClassName, _global.Position, "");
 
                 _tModel.cutPart(cut, part1);
                 
+            }
+            if(type1=="TopRailProfile")
+            {
+                _global.Position.Depth = Position.DepthEnum.FRONT;
+                ContourPlate cut = _tModel.CreateContourPlate(_pointsList, "PL6", "IS2062", BooleanPart.BooleanOperativeClassName, _global.Position, "");
+
+                _tModel.cutPart(cut, part1);
             }
             _pointsList.Clear();
 
@@ -725,18 +754,56 @@ namespace DistillationColumn
              TSM.ContourPoint postTopPoint = _tModel.ShiftVertically(postBottomPoint, handrailHeight-15);
             _global.Position.RotationOffset = ladderOrientation;
 
-
-
-
-
             _global.ProfileStr = VerticalPostProfile;
             _global.ClassStr = "10";
             TSM.Beam post = _tModel.CreateBeam(postBottomPoint, postTopPoint, _global.ProfileStr, Globals.MaterialStr, _global.ClassStr, _global.Position);
+            CreateBolt(post, postBottomPoint, location, ladderOrientation);
+            ContourPoint point3 = new ContourPoint(_tModel.ShiftVertically(postBottomPoint, 500), null);
+            //bent 
+            double dist = getDistance("VerticalPostProfile");
+            
+            _global.Position.Plane = Tekla.Structures.Model.Position.PlaneEnum.LEFT;
+            _global.Position.Rotation = Tekla.Structures.Model.Position.RotationEnum.FRONT;
+            _global.Position.Depth = Tekla.Structures.Model.Position.DepthEnum.FRONT;
+            if (location=="end")
+            {
+                _global.Position.Plane = Tekla.Structures.Model.Position.PlaneEnum.RIGHT;
+                _global.Position.Rotation = Tekla.Structures.Model.Position.RotationEnum.TOP;
+                _global.Position.Depth = Tekla.Structures.Model.Position.DepthEnum.FRONT;
+                postBottomPoint = _tModel.ShiftAlongCircumferenceRad(postBottomPoint, -6, 2);
+            }
+            else
+            {
+                postBottomPoint = _tModel.ShiftAlongCircumferenceRad(postBottomPoint, 6, 2);
 
-            CreateBolt(post, postBottomPoint,location,ladderOrientation);
+            }
+            
+            double m = getDistance("TopRailProfile");
+            postBottomPoint =_tModel.ShiftHorizontallyRad(postBottomPoint,dist,1,ladderOrientation*Math.PI/180);
+            postBottomPoint = _tModel.ShiftVertically(postBottomPoint, 500);
+            ContourPoint point1 = new ContourPoint(_tModel.ShiftHorizontallyRad(postBottomPoint, 200 + dist, 3, ladderOrientation * Math.PI / 180), null);
+            postTopPoint = _tModel.ShiftVertically(postBottomPoint, 500);
+            ContourPoint point2 = new ContourPoint(_tModel.ShiftHorizontallyRad(postTopPoint, 200 + dist, 3, ladderOrientation * Math.PI / 180),null);
+            _pointsList.Add(postBottomPoint);
+            _pointsList.Add(point1);
+            _pointsList.Add(point2);
+            _pointsList.Add(postTopPoint);
+            _global.Position.RotationOffset = 0;
+            
+            TSM.PolyBeam p = _tModel.CreatePolyBeam(_pointsList, TopRailProfile, Globals.MaterialStr, _global.ClassStr, _global.Position);
+            _pointsList.Clear();
 
-            // bent pipe
-           
+            point1 = _tModel.ShiftHorizontallyRad(postBottomPoint, dist, 3, ladderOrientation * Math.PI / 180);
+            int _side = 4;
+            if (location == "end")
+            {
+                _global.Position.Depth = Tekla.Structures.Model.Position.DepthEnum.BEHIND;
+                _side = 2;
+            }
+
+            CreateCutBox(point3, _side, "TopRailProfile", "VerticalPostProfile", p, post, true);
+
+
         }
 
         void HandrailAtLadderLocationNearHoop(int side,double angles,string location)
@@ -750,12 +817,12 @@ namespace DistillationColumn
 
             TSM.ContourPoint horizontalRodPoint1;
             TSM.ContourPoint horizontalRodPoint2;
-
+            TSM.ContourPoint point2;
             // vertical post 1
             TSM.ContourPoint postBottomPoint = _tModel.ShiftHorizontallyRad(origin, radius + obstructionDistance + 325 + 365 + 25, 1, ladderOrientation * Math.PI / 180);
             //postBottomPoint = _tModel.ShiftHorizontallyRad(postBottomPoint, (ladderWidth / 2) + 100 + 25, side);
 
-            
+            point2 = new ContourPoint(_tModel.ShiftHorizontallyRad(origin,radius+distanceFromStack,1,ladderOrientation*Math.PI/180), null);
 
 
             _global.ProfileStr = VerticalPostProfile;
@@ -766,6 +833,7 @@ namespace DistillationColumn
                 _global.Position.Rotation = Tekla.Structures.Model.Position.RotationEnum.BACK;
                 _global.Position.Depth = Tekla.Structures.Model.Position.DepthEnum.BEHIND;
                 postBottomPoint = _tModel.ShiftHorizontallyRad(postBottomPoint, (ladderWidth / 2)+160, 2,ladderOrientation*Math.PI/180);
+                point2 = _tModel.ShiftAlongCircumferenceRad(postBottomPoint, (ladderWidth / 2) + 160, 2);
             }
             else
             {
@@ -773,6 +841,7 @@ namespace DistillationColumn
                 _global.Position.Rotation = Tekla.Structures.Model.Position.RotationEnum.BELOW;
                 _global.Position.Depth = Tekla.Structures.Model.Position.DepthEnum.BEHIND;
                 postBottomPoint = _tModel.ShiftHorizontallyRad(postBottomPoint, ((ladderWidth / 2) + 100 + 60), 4, ladderOrientation * Math.PI / 180);
+                point2 = _tModel.ShiftAlongCircumferenceRad(postBottomPoint, (ladderWidth / 2) + 160, 2);
             }
             _global.Position.RotationOffset = ladderOrientation;
             TSM.ContourPoint postTopPoint = _tModel.ShiftVertically(postBottomPoint, handrailHeight-15);
@@ -858,7 +927,7 @@ namespace DistillationColumn
             }
                 
             CreateCutBox(point1, _side, "MidRailProfile", "VerticalPostProfile", horizontalPipe, verticalPost, true);
-            
+            CreateCutBox(point1, _side, "MidRailProfile", "VerticalPostProfile", horizontalPipe, verticalPost, true);
             int count = 1;
             double distanceBetweenVerticalPost = remainingDistance / count;
             while (distanceBetweenVerticalPost > 600)
