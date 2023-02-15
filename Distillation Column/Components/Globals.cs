@@ -52,10 +52,10 @@ namespace DistillationColumn
             List<JToken> stackList = JData["stack"].ToList();
             foreach (JToken stackSeg in stackList)
             {
-                double bottomDiameter = (float)stackSeg["inside_dia_bottom"] * 1000; // inside bottom diamter
-                double topDiameter = (float)stackSeg["inside_dia_top"] * 1000; // inside top diameter
-                double thickness = (float)stackSeg["shell_thickness"] * 1000;
-                double height = (float)stackSeg["seg_height"] * 1000;
+                double bottomDiameter = (float)stackSeg["inside_dia_bottom"] ; // inside bottom diamter
+                double topDiameter = (float)stackSeg["inside_dia_top"] ; // inside top diameter
+                double thickness = (float)stackSeg["shell_thickness"];
+                double height = (float)stackSeg["seg_height"];
 
                 StackSegList.Add(new List<double> { bottomDiameter, topDiameter, thickness, height });
             }

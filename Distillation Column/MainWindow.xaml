@@ -161,7 +161,7 @@
                     <DataGrid x:Name="PlatformGrid" Height="453" Margin="0,120,0,0" VerticalAlignment="Top" Width="901" AutoGenerateColumns="False" CanUserAddRows="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Elevation" Binding="{Binding Elevation}"/>
-                            <DataGridTextColumn Header="Orientation Angle" Binding="{Binding Orientation_Angle}" />
+                            <DataGridTextColumn Header="Ladder Orientation Angle" Binding="{Binding Orientation_Angle}" />
                             <DataGridTextColumn Header="Platform Width" Binding="{Binding Platform_Width}" />
                             <DataGridTextColumn Header="Platform Length" Binding="{Binding Platform_Length}" />
                             <DataGridTextColumn Header="Platform Start Angle" Binding="{Binding Platform_Start_Angle}" />
@@ -194,11 +194,11 @@
 
                             <DataGridTextColumn Header="Elevation" Binding="{Binding elevation}" Width="100" />
                             <DataGridTextColumn Header="Orientation Angle" Binding="{Binding orientation_angle}" Width="150"/>
-                            <DataGridTextColumn Header="NeckPlate Thickness" Binding="{Binding neck_plate_Thickness}" Width="150"/>
+                            <DataGridTextColumn Header="OpeningPlate Thickness" Binding="{Binding neck_plate_Thickness}" Width="180"/>
                             <DataGridTextColumn Header="Plate Diameter"  Binding="{Binding plate_Diameter}" Width="120"/>
-                            <DataGridTextColumn Header="NeckPlate Width "  Binding="{Binding neck_plate_width }" Width="150"/>
-                            <DataGridTextColumn Header="LiningPlate Width "  Binding="{Binding lining_plate_width }" Width="150"/>
-                            <DataGridTextColumn Header="NumberOf Bolts "  Binding="{Binding number_of_bolts }" Width="150"/>
+                            <DataGridTextColumn Header="OpeningPlate Width "  Binding="{Binding neck_plate_width }" Width="170"/>
+                            <DataGridTextColumn Header="LiningPlate Width "  Binding="{Binding lining_plate_width }" Width="170"/>
+                            <DataGridTextColumn Header="Number Of Bolts "  Binding="{Binding number_of_bolts }" Width="150"/>
                             <DataGridTemplateColumn Header="Delete" >
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
