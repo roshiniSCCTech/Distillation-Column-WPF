@@ -70,47 +70,87 @@ namespace DistillationColumn
 
                 HandrailAtLadderLocation();
 
-                // first half of platform
-
-                startAngle = platformStartAngle;
-                endAngle = extensionStartAngle;
-                length = platformLength;
-                radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
-                gratingOuterRadius = (radius + 25 + 10) + distanceFromStack + length; //25 Pipe radius and 10-plate
-
-
-
-                if (startAngle != endAngle)
+                if (platformStartAngle != ladderOrientation)
                 {
-                    ShiftAngle();
-                    createHandrail();
+                    double l = platformLength;
+                    if (platformStartAngle == extensionStartAngle)
+                    {
+                        l += extensionLength;
+                    }
+                    CreateSideHandrail(platformStartAngle, l);
+                }
+                if (platformEndAngle != ladderOrientation)
+                {
+                    double l = platformLength;
+                    if (platformEndAngle == extensionEndAngle)
+                    {
+                        l += extensionLength;
+                    }
+                    CreateSideHandrail(platformEndAngle, l);
                 }
 
-                // extension
-
-                startAngle = extensionStartAngle;
-                endAngle = extensionEndAngle;
-                length = platformLength + extensionLength;
-
-                if (startAngle != endAngle)
+                if (extensionEndAngle - extensionStartAngle != 0)
                 {
-                    ShiftAngle();
-                    createHandrail();
+                    // first half of platform
 
+                    startAngle = platformStartAngle;
+                    endAngle = extensionStartAngle;
+                    length = platformLength;
+                    radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
+                    gratingOuterRadius = (radius + 25 + 10) + distanceFromStack + length; //25 Pipe radius and 10-plate
+
+
+
+                    if (startAngle != endAngle)
+                    {
+                        ShiftAngle();
+                        createHandrail();
+                    }
+
+                    // extension
+
+                    startAngle = extensionStartAngle;
+                    endAngle = extensionEndAngle;
+                    length = platformLength + extensionLength;
+
+                    if (startAngle != endAngle)
+                    {
+                        ShiftAngle();
+                        createHandrail();
+
+                    }
+
+
+                    // second half of platform
+
+                    startAngle = extensionEndAngle;
+                    endAngle = platformEndAngle;
+                    length = platformLength;
+
+                    if (startAngle != endAngle)
+                    {
+                        ShiftAngle();
+                        createHandrail();
+
+                    }
                 }
-
-
-                // second half of platform
-
-                startAngle = extensionEndAngle;
-                endAngle = platformEndAngle;
-                length = platformLength;
-
-                if (startAngle != endAngle)
+                else
                 {
-                    ShiftAngle();
-                    createHandrail();
+                    // first half of platform
 
+                    startAngle = platformStartAngle;
+                    endAngle = platformEndAngle;
+                    length = platformLength;
+                    radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
+                    gratingOuterRadius = (radius + 25 + 10) + distanceFromStack + length; //25 Pipe radius and 10-plate
+
+
+
+                    if (startAngle != endAngle)
+                    {
+                        ShiftAngle();
+                        createHandrail();
+                    }
                 }
 
                 //CreateBrackets2();
@@ -847,6 +887,71 @@ namespace DistillationColumn
             
 
            
+
+        }
+
+        public void CreateSideHandrail(double angle, double l)
+        {
+            radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
+            ContourPoint point = new ContourPoint((_tModel.ShiftVertically(_global.Origin, elevation)), null);
+            ContourPoint handrailStart = new ContourPoint((_tModel.ShiftHorizontallyRad(point, radius + obstructionDistance, 1, (angle * Math.PI / 180))), null);
+            ContourPoint handrailEnd = new ContourPoint();
+            ContourPoint WeldStart = new ContourPoint();
+            ContourPoint weldEnd = new ContourPoint();
+            ContourPoint weldMid = new ContourPoint();
+            if (angle == platformStartAngle)
+            {
+                handrailStart = _tModel.ShiftHorizontallyRad(handrailStart, 70, 4);
+                handrailEnd = new ContourPoint((_tModel.ShiftHorizontallyRad(handrailStart, 35, 2, (angle * Math.PI / 180))), null);
+                _global.Position.Plane = Position.PlaneEnum.RIGHT;
+                WeldStart = new ContourPoint((_tModel.ShiftHorizontallyRad(handrailEnd, 250, 1, (angle * Math.PI / 180))), null);
+                if ((l - 500) > 1000)
+                {
+                    weldMid = new ContourPoint((_tModel.ShiftHorizontallyRad(WeldStart, (l - 500) / 2, 1, (angle * Math.PI / 180))), null);
+                    CreateWeld(weldMid, 2, angle);
+                }
+                weldEnd = new ContourPoint((_tModel.ShiftHorizontallyRad(handrailEnd, (l - 250), 1, (angle * Math.PI / 180))), null);
+                CreateWeld(WeldStart, 2, angle);
+                CreateWeld(weldEnd, 2, angle);
+            }
+            else
+            {
+                handrailStart = _tModel.ShiftHorizontallyRad(handrailStart, 70, 2);
+                handrailEnd = new ContourPoint((_tModel.ShiftHorizontallyRad(handrailStart, 35, 4, (angle * Math.PI / 180))), null);
+                _global.Position.Plane = Position.PlaneEnum.LEFT;
+                WeldStart = new ContourPoint((_tModel.ShiftHorizontallyRad(handrailEnd, 250, 1, (angle * Math.PI / 180))), null);
+                if ((l - 500) > 1000)
+                {
+                    weldMid = new ContourPoint((_tModel.ShiftHorizontallyRad(WeldStart, (l - 500) / 2, 1, (angle * Math.PI / 180))), null);
+                    CreateWeld(weldMid, 4, angle);
+                }
+                weldEnd = new ContourPoint((_tModel.ShiftHorizontallyRad(handrailEnd, (l - 250), 1, (angle * Math.PI / 180))), null);
+                CreateWeld(WeldStart, 4, angle);
+                CreateWeld(weldEnd, 4, angle);
+
+            }
+
+            CustomPart CPart = new CustomPart();
+            CPart.Name = "Rectangular_Handrail";
+            CPart.Number = BaseComponent.CUSTOM_OBJECT_NUMBER;
+            double t = (70 / (radius + obstructionDistance)) * (180 / Math.PI);
+            CPart.Position.Plane = _global.Position.Plane;
+            CPart.Position.PlaneOffset = t;
+            CPart.Position.Depth = Position.DepthEnum.FRONT;
+
+            CPart.Position.Rotation = Position.RotationEnum.TOP;
+
+            CPart.SetInputPositions(handrailStart, handrailEnd);
+            CPart.SetAttribute("width", 35);
+            CPart.SetAttribute("distance", (l - 500));
+
+            bool b = CPart.Insert();
+            CPart.SetAttribute("P2", 0);
+
+            CPart.Modify();
+            _tModel.Model.CommitChanges();
+
+
 
         }
 

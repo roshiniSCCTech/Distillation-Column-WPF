@@ -569,8 +569,10 @@ namespace DistillationColumn
             double ele2 = elevation - (duct_Height / 2) + (neckplate_Thickness / 2);
             int no = _tModel.GetSegmentAtElevation(ele2, _global.StackSegList);
             int no1 = _tModel.GetSegmentAtElevation(ele1, _global.StackSegList);
+            _global.Position.Depth = Position.DepthEnum.MIDDLE;
             for (int i = no; i <= no1; i++)
             {
+
                 Beam b = _tModel.CreateBeam(ePointStart, ePointEnd, profile, "IS2062", BooleanPart.BooleanOperativeClassName, _global.Position, "");
                 _tModel.cutPart(b,_global.SegmentPartList[i]);
             }
