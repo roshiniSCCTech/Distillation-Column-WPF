@@ -168,6 +168,7 @@
     <None Include="bin\Debug\CustomComponents\HingedAccessDoorTapered.uel" />
     <None Include="bin\Debug\CustomComponents\Ladder1.uel" />
     <None Include="bin\Debug\CustomComponents\LadderHoop.uel" />
+    <None Include="bin\Debug\CustomComponents\LadderHoopDetail.uel" />
     <None Include="bin\Debug\CustomComponents\Platform_BracketFinal .uel" />
     <None Include="bin\Debug\projects.json" />
     <None Include="bin\Debug\CustomComponents\Rectangular_Handrail.uel" />
