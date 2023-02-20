@@ -26,11 +26,11 @@ namespace DistillationColumn
         List<CDrawingView> viewList = new List<CDrawingView>();
         public void BuildViews(string jsonStr)
         {
-           
-            
+            int lastStackCount = _global.StackSegList.Count - 1;
+            double stackElevation = _global.StackSegList[lastStackCount][4] + _global.StackSegList[lastStackCount][3];
 
             //Tekla.Structures.Drawing.Size A1Size = new Tekla.Structures.Drawing.Size(841, 594);
-            Tekla.Structures.Drawing.Size A1SizePortrait = new Tekla.Structures.Drawing.Size(594, 843);
+            Tekla.Structures.Drawing.Size A1SizePortrait = new Tekla.Structures.Drawing.Size(594,stackElevation);
             GADrawing drawingInst = new GADrawing("LCH", A1SizePortrait);
             drawingInst.Name = "General Arrangement Drawing";
             try
@@ -39,8 +39,8 @@ namespace DistillationColumn
                 CDrawingView compleStackView = new CompleteStackView(drawingInst);
                 compleStackView.Generate(jsonStr,_global,_tModel);
                 dwgHandler.SetActiveDrawing(drawingInst, true);
-                //compleStackView.InsertAnnotations();
-                //compleStackView.InsertDimensions();
+                compleStackView.InsertAnnotations(_global, _tModel);
+                compleStackView.InsertDimensions(_global, _tModel);
             }
             catch (Exception exception)
             {
