@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace DistillationColumn
 {
-    class Globals
+    public class Globals
     {
         public string ProfileStr;
         public const string MaterialStr = "IS2062";

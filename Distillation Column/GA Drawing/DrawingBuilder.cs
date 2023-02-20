@@ -37,7 +37,7 @@ namespace DistillationColumn
             {
                 _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(new TransformationPlane());
                 CDrawingView compleStackView = new CompleteStackView(drawingInst);
-                compleStackView.Generate(jsonStr);
+                compleStackView.Generate(jsonStr,_global,_tModel);
                 dwgHandler.SetActiveDrawing(drawingInst, true);
                 //compleStackView.InsertAnnotations();
                 //compleStackView.InsertDimensions();
@@ -65,7 +65,7 @@ namespace DistillationColumn
         {
             try
             {
-                drawingView.Generate(jsonStr);
+                drawingView.Generate(jsonStr, _global,_tModel);
             }
             catch (Exception exception)
             {

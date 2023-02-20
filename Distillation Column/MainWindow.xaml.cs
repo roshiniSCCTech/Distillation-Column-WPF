@@ -33,7 +33,7 @@ namespace DistillationColumn
         JObject JProjects;
         List<Projects> projects = new List<Projects>();
         string jProjectsString;
-
+    string jDataString;
         OriginData originData= new OriginData();
         List<StackData> stackDatas = new List<StackData>();
         List<CircularAccessData> circularAccessDatas = new List<CircularAccessData>();
@@ -108,14 +108,14 @@ namespace DistillationColumn
 
             new ComponentHandler(_global, _tModel, checkComponents);
 
-            new DrawingBuilder(_global, _tModel,jProjectsString);
+            new DrawingBuilder(_global, _tModel, jDataString);
 
 
         }
 
         private void getJSONData()
         {
-            string jDataString = File.ReadAllText(jsonFileName);
+             jDataString = File.ReadAllText(jsonFileName);
             JData = JObject.Parse(jDataString);
 
             // origin data
