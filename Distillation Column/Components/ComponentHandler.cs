@@ -12,7 +12,7 @@ namespace DistillationColumn
     class ComponentHandler
     {
         Globals _global;
-        TeklaModelling _tModel;
+        public TeklaModelling _tModel;
         public ComponentHandler(Globals global, TeklaModelling teklaModel, Dictionary<string, bool?> checkComponents)
         {
             _global = global;

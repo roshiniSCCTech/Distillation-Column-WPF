@@ -9,7 +9,7 @@ using TSM = Tekla.Structures.Model;
 
 namespace HelperLibrary
 {
-    public class TeklaModelling : GeometricalHelperClass
+     class TeklaModelling : GeometricalHelperClass
     {
         public TSM.Model Model;
 

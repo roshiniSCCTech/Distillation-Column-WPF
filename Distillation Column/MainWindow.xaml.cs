@@ -32,6 +32,7 @@ namespace DistillationColumn
         JObject JData;
         JObject JProjects;
         List<Projects> projects = new List<Projects>();
+        string jProjectsString;
 
         OriginData originData= new OriginData();
         List<StackData> stackDatas = new List<StackData>();
@@ -54,7 +55,7 @@ namespace DistillationColumn
 
 
             // data for projects
-            string jProjectsString = File.ReadAllText("projects.json");
+            jProjectsString = File.ReadAllText("projects.json");
             JProjects = JObject.Parse(jProjectsString);
             projects = JsonConvert.DeserializeObject<List<Projects>>(JProjects["projects"].ToString());
             ProjectsDropdown.ItemsSource = projects;
@@ -106,6 +107,8 @@ namespace DistillationColumn
             _tModel = new TeklaModelling(_global.Origin.X, _global.Origin.Y, _global.Origin.Z);
 
             new ComponentHandler(_global, _tModel, checkComponents);
+
+            new DrawingBuilder(_global, _tModel,jProjectsString);
 
 
         }

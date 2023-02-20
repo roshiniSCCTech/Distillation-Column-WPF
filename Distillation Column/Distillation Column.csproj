@@ -87,8 +87,17 @@
     <Reference Include="Tekla.Structures.Datatype, Version=2022.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=MSIL">
       <HintPath>..\packages\Tekla.Structures.Datatype.2022.0.10715\lib\net40\Tekla.Structures.Datatype.dll</HintPath>
     </Reference>
+    <Reference Include="Tekla.Structures.Dialog, Version=2022.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tekla.Structures.Dialog.2022.0.10715\lib\net40\Tekla.Structures.Dialog.dll</HintPath>
+    </Reference>
+    <Reference Include="Tekla.Structures.Drawing, Version=2022.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tekla.Structures.Drawing.2022.0.10715\lib\net40\Tekla.Structures.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="Tekla.Structures.Model, Version=2022.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=MSIL">
       <HintPath>..\packages\Tekla.Structures.Model.2022.0.10715\lib\net40\Tekla.Structures.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Tekla.Structures.Plugins, Version=2022.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tekla.Structures.Plugins.2022.0.10715\lib\net40\Tekla.Structures.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -137,9 +146,13 @@
     <Compile Include="Components\StiffnerRingData.cs" />
     <Compile Include="Components\StiffnerRings.cs" />
     <Compile Include="Components\TeklaModelling.cs" />
+    <Compile Include="GA Drawing\AnnotationsAttributes.cs" />
     <Compile Include="GA Drawing\CDrawingView.cs" />
     <Compile Include="GA Drawing\CompleteStackView.cs" />
+    <Compile Include="GA Drawing\DrawingBuilder.cs" />
+    <Compile Include="GA Drawing\DrawingSettings.cs" />
     <Compile Include="GA Drawing\DrawingUtils.cs" />
+    <Compile Include="GA Drawing\IDrawingView.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -187,6 +200,53 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_9.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_8.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_7.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_15.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_13.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_11.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_10.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prtyp_tree_1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\element_catalog_cross_section_user.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\element_catalog_cross_section_sketch.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\element_catalog_cross_section.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
