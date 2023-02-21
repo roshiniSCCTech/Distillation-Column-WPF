@@ -4,6 +4,7 @@ using System.Windows.Documents;
 using Tekla.Structures.Drawing;
 using Tekla.Structures.Model;
 using System.Collections.Generic;
+using Tekla.Structures.Geometry3d;
 using HelperLibrary;
 
 namespace DistillationColumn
@@ -41,13 +42,18 @@ namespace DistillationColumn
                 dwgHandler.SetActiveDrawing(drawingInst, true);
                 compleStackView.InsertAnnotations(_global, _tModel);
                 compleStackView.InsertDimensions(_global, _tModel);
+                //CDrawingView chairView = new ChairView(_global,_tModel);
+                //chairView.Generate(jsonStr, _global, _tModel);
+                
+                //chairView.InsertAnnotations(_global, _tModel);
+                //chairView.InsertDimensions(_global,_tModel);
             }
             catch (Exception exception)
             {
                 _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(currentPlane);
                 //MessageBox.Show(exception.ToString());
             }
-            //BuildDrawing(new ChairView(drawingInst), jsonStr);
+            new ChairView(_global,_tModel,jsonStr);
             //BuildDrawing(new InstrumentVIews(drawingInst), jsonStr);
             //BuildDrawing(new PlatformView(drawingInst), jsonStr);
             //BuildDrawing(new SpliceView(drawingInst), jsonStr);
