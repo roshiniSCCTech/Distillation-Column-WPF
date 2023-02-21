@@ -468,46 +468,76 @@ namespace DistillationColumn
 
             //StackModel.dimElevations.Clear();
 
+//            int tn = 0;
+//            foreach (var seg in _global.StackSegList)
+//            {
+//                if (seg[0] == seg[1])
+//                {
+//                    break;
+//                }
+//                else
+//                {
+//                    tn++
+//;
+//                }
+//            }
             List<double> elevationList = new List<double>();
             double elevation = _global.Origin.Z;
+            int count = 0;
             foreach(var seg in _global.StackSegList)
             {
-                if (seg[0]== seg[1])
+              
+                if (seg[0] == seg[1])
                 {
                     elevation += seg[3];
+                    
                 }
                 else
                 {
                     elevationList.Add(elevation);
-                    break;
+                    elevationList.Add(seg[3]);
+                    elevation=0;
                 }
+                if(count==_global.StackSegList.Count-1)
+                {
+                    elevationList.Add(elevation);
+                }
+                count++;
+            }
+
+            //List<double> elevationList1 = new List<double>();
+            //double elevation1 = _global.Origin.Z;
+            //foreach (var seg in _global.StackSegList)
+            //{
+            //    if (seg[0] == seg[1])
+            //    {
+            //        elevationList1.Add(seg[4]);
+                   
+            //    }
+
+
+            //}
+
+            startPoint = new T3D.Point(_global.Origin.X-3000, _global.Origin.Z);
+            elevation = 0;
+            for (int val = 0; val <elevationList.Count; val++)
+            {
+                elevation+= elevationList[val];
+                endPoint = new T3D.Point(startPoint.X,elevation);
+                //if (val>0)
+                //{
+                //    endPoint = new T3D.Point(startPoint.X, elevationList[val] + elevationList[val - 1]);
+                //}
+                 
                 
+                DrawingUtils.CreateDimension(m_completeStackView, startPoint, endPoint);
+               
+
+                startPoint = new T3D.Point(endPoint.X, endPoint.Y);
+                //startPoint.Z = elevationList1[val] ;
 
             }
-
-            List<double> elevationList1 = new List<double>();
-            double elevation1 = _global.Origin.Z;
-            foreach (var seg in _global.StackSegList)
-            {
-                if (seg[0] != seg[1])
-                {
-                    elevation1 += seg[3];
-                }
-                else
-                {
-                    elevationList.Add(elevation1);
-                    break;
-                }
-
-
-            }
-            for (int val = 0; val <= elevationList.Count; val = val + 2)
-            {
-                startPoint = new T3D.Point(StackModel.drawing_Tapered_Seg_Points[val].X, StackModel.drawing_Tapered_Seg_Points[val].Z);
-                endPoint = new T3D.Point(StackModel.drawing_Tapered_Seg_Points[val + 1].X, StackModel.drawing_Tapered_Seg_Points[val + 1].Z);
-                // DrawingUtils.createDimension(m_completeStackView, startPoint, endPoint);
-            }
-            DrawingUtils.CreateDimension(m_completeStackView, startPoint, endPoint);
+           
         }
     }
 }

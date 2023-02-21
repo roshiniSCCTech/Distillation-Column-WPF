@@ -230,3 +230,7 @@ _Pvt_Extensions
 .fake/
 *.binlog
 /.dotnet
+/Distillation Column/Resources/prtyp_tree_9.bmp
+/Distillation Column/Resources/element_catalog_cross_section.bmp
+/Distillation Column/Resources/element_catalog_cross_section_sketch.bmp
+/Distillation Column/Resources

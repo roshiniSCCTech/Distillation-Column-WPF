@@ -66,7 +66,7 @@ namespace DistillationColumn
             {
                 new InstrumentNozzle(_global, _tModel);
             }
-            new Duct(_global, _tModel);
+            //new Duct(_global, _tModel);
 
         }
     }

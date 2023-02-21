@@ -30,7 +30,7 @@ namespace DistillationColumn
             double stackElevation = _global.StackSegList[lastStackCount][4] + _global.StackSegList[lastStackCount][3];
 
             //Tekla.Structures.Drawing.Size A1Size = new Tekla.Structures.Drawing.Size(841, 594);
-            Tekla.Structures.Drawing.Size A1SizePortrait = new Tekla.Structures.Drawing.Size(594,stackElevation);
+            Tekla.Structures.Drawing.Size A1SizePortrait = new Tekla.Structures.Drawing.Size(594,1000);
             GADrawing drawingInst = new GADrawing("LCH", A1SizePortrait);
             drawingInst.Name = "General Arrangement Drawing";
             try

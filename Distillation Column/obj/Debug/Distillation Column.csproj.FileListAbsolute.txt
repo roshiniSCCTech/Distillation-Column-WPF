@@ -229,3 +229,9 @@ C:\Users\Supriya Chaugule\Desktop\Tekla projects\Distillation-Column-WPF\Distill
 C:\Users\Supriya Chaugule\Desktop\Tekla projects\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Dialog.xml
 C:\Users\Supriya Chaugule\Desktop\Tekla projects\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Drawing.xml
 C:\Users\Supriya Chaugule\Desktop\Tekla projects\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Plugins.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Dialog.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Drawing.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Plugins.dll
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Dialog.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Drawing.xml
+D:\Tekla Basics\Distillation-Column-WPF\Distillation Column\bin\Debug\Tekla.Structures.Plugins.xml
