@@ -148,6 +148,7 @@
     <Compile Include="Components\TeklaModelling.cs" />
     <Compile Include="GA Drawing\AnnotationsAttributes.cs" />
     <Compile Include="GA Drawing\CDrawingView.cs" />
+    <Compile Include="GA Drawing\ChairView.cs" />
     <Compile Include="GA Drawing\CompleteStackView.cs" />
     <Compile Include="GA Drawing\DrawingBuilder.cs" />
     <Compile Include="GA Drawing\DrawingSettings.cs" />
