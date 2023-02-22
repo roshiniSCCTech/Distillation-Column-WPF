@@ -6,6 +6,7 @@ using Tekla.Structures.Model;
 using System.Collections.Generic;
 using Tekla.Structures.Geometry3d;
 using HelperLibrary;
+using DistillationColumn.GA_Drawing;
 
 namespace DistillationColumn
 {
@@ -53,9 +54,10 @@ namespace DistillationColumn
                 _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(currentPlane);
                 
             }
-            //new ChairView(_global,_tModel,jsonStr);
+            new ChairView(_global,_tModel,jsonStr);
             //BuildDrawing(new InstrumentVIews(drawingInst), jsonStr);
-            new PlatformView(_global,_tModel, jsonStr);
+            new FlangeView(_global, _tModel, jsonStr);
+            //new PlatformView(_global,_tModel, jsonStr);
             //BuildDrawing(new SpliceView(drawingInst), jsonStr);
             //BuildDrawing(new FloorSteelView(drawingInst), jsonStr);
             //BuildDrawing(new DuctOpeningView(drawingInst), jsonStr);

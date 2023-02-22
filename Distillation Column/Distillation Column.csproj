@@ -153,6 +153,7 @@
     <Compile Include="GA Drawing\DrawingBuilder.cs" />
     <Compile Include="GA Drawing\DrawingSettings.cs" />
     <Compile Include="GA Drawing\DrawingUtils.cs" />
+    <Compile Include="GA Drawing\FlangeView.cs" />
     <Compile Include="GA Drawing\IDrawingView.cs" />
     <Compile Include="GA Drawing\InstrumentVIews.cs" />
     <Compile Include="MainWindow.xaml.cs">
