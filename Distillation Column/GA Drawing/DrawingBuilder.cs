@@ -51,11 +51,11 @@ namespace DistillationColumn
             catch (Exception exception)
             {
                 _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(currentPlane);
-                //MessageBox.Show(exception.ToString());
+                
             }
             //new ChairView(_global,_tModel,jsonStr);
             //BuildDrawing(new InstrumentVIews(drawingInst), jsonStr);
-            //BuildDrawing(new PlatformView(drawingInst), jsonStr);
+            new PlatformView(_global,_tModel, jsonStr);
             //BuildDrawing(new SpliceView(drawingInst), jsonStr);
             //BuildDrawing(new FloorSteelView(drawingInst), jsonStr);
             //BuildDrawing(new DuctOpeningView(drawingInst), jsonStr);

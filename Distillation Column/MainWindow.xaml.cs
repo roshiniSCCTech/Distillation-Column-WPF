@@ -33,12 +33,12 @@ namespace DistillationColumn
         JObject JProjects;
         List<Projects> projects = new List<Projects>();
         string jProjectsString;
-    string jDataString;
-        OriginData originData= new OriginData();
+        string jDataString;
+        OriginData originData = new OriginData();
         List<StackData> stackDatas = new List<StackData>();
         List<CircularAccessData> circularAccessDatas = new List<CircularAccessData>();
-        List<InstrumentNozzleData> instrumentNozzleDatas= new List<InstrumentNozzleData>();
-        List<AccessDoorData> accessDoorDatas= new List<AccessDoorData>();
+        List<InstrumentNozzleData> instrumentNozzleDatas = new List<InstrumentNozzleData>();
+        List<AccessDoorData> accessDoorDatas = new List<AccessDoorData>();
         RectangularPlatformData rectPlatformData = new RectangularPlatformData();
         List<PlatformData> platformDatas = new List<PlatformData>();
         List<FlangeData> flangeDatas = new List<FlangeData>();
@@ -109,17 +109,19 @@ namespace DistillationColumn
             new ComponentHandler(_global, _tModel, checkComponents);
 
             new DrawingBuilder(_global, _tModel, jDataString);
+            //new PlatformView(_global, _tModel, jDataString);
+            //MessageBox.Show("Completed");
 
 
         }
 
         private void getJSONData()
         {
-             jDataString = File.ReadAllText(jsonFileName);
+            jDataString = File.ReadAllText(jsonFileName);
             JData = JObject.Parse(jDataString);
 
             // origin data
-            originData = JsonConvert.DeserializeObject<OriginData> (JData["origin"].ToString());
+            originData = JsonConvert.DeserializeObject<OriginData>(JData["origin"].ToString());
 
             // data for stack 
             stackDatas = JsonConvert.DeserializeObject<List<StackData>>(JData["stack"].ToString());
@@ -140,13 +142,13 @@ namespace DistillationColumn
             platformDatas = JsonConvert.DeserializeObject<List<PlatformData>>(JData["Platform"].ToString());
 
             //chair data
-            chairDatas = JsonConvert.DeserializeObject<ChairData>(JData["chair"].ToString());    
-            
+            chairDatas = JsonConvert.DeserializeObject<ChairData>(JData["chair"].ToString());
+
             //stiffner ring data
-            ringDatas = JsonConvert.DeserializeObject<StiffnerRingData>(JData["stiffner_ring"].ToString());  
-            
+            ringDatas = JsonConvert.DeserializeObject<StiffnerRingData>(JData["stiffner_ring"].ToString());
+
             //JData["Flange"].ToList().ForEach(tok => { tok = JsonConvert.SerializeObject(tok); });
-            flangeDatas = JsonConvert.DeserializeObject<List<FlangeData>>(JData["Flange"].ToString());
+            flangeDatas = JsonConvert.DeserializeObject<List<FlangeData>>(JData["Flange"].ToString());
 
         }
 
@@ -157,16 +159,16 @@ namespace DistillationColumn
 
             //set Json Data for Stack
             JData["stack"] = JArray.Parse(JsonConvert.SerializeObject(stackDatas));
-           
+
             //set Json data for Circular Access Door
             JData["CircularAccessDoor"] = JArray.Parse(JsonConvert.SerializeObject(circularAccessDatas));
-            
+
             //set Json data for Instrument Nozzle
             JData["instrumental_nozzle"] = JArray.Parse(JsonConvert.SerializeObject(instrumentNozzleDatas));
-           
+
             //set Json data for Access Door
             JData["access_door"] = JArray.Parse(JsonConvert.SerializeObject(accessDoorDatas));
-            
+
             // set data for rectangular platform
             JData["RectangularPlatform"] = JObject.Parse(JsonConvert.SerializeObject(rectPlatformData));
 
@@ -231,9 +233,9 @@ namespace DistillationColumn
         {
             circularAccessDatas.Add(new CircularAccessData()
             {
-                
-                elevation=0.0,
-                orientation_angle=0.0,
+
+                elevation = 0.0,
+                orientation_angle = 0.0,
                 neck_plate_Thickness = 0.0,
                 plate_Diameter = 0.0,
                 neck_plate_width = 0.0,
@@ -241,31 +243,31 @@ namespace DistillationColumn
                 number_of_bolts = 0.0,
             });
             CircularAccessGrid.Items.Refresh();
-        }   
+        }
 
         private void addRowforInstrumentNozzle(object sender, RoutedEventArgs e)
         {
             instrumentNozzleDatas.Add(new InstrumentNozzleData()
             {
-                
+
                 elevation = 0.0,
                 orientation_angle = 0.0,
             });
             InstrumentNozleGrid.Items.Refresh();
 
-        }      
+        }
 
         private void addRowforAccessDoor(object sender, RoutedEventArgs e)
         {
-           accessDoorDatas.Add(new AccessDoorData()
+            accessDoorDatas.Add(new AccessDoorData()
             {
-                
+
                 elevation = 0.0,
                 orientation_angle = 0.0,
                 height = 0.0,
                 width = 0.0,
-                breadth= 0.0,
-                
+                breadth = 0.0,
+
             });
             AccessDoorGrid.Items.Refresh();
         }
@@ -331,7 +333,7 @@ namespace DistillationColumn
         {
             flangeDatas.Add(new FlangeData()
             {
-               
+
                 elevation = 0.0,
                 number_of_bolts = 0,
                 inside_distance = 0,
@@ -407,8 +409,9 @@ namespace DistillationColumn
 
         private void DeleteProject(object sender, RoutedEventArgs e)
         {
-            foreach(Projects project in projects) {
-                if(project.name == ProjectName.Text)
+            foreach (Projects project in projects)
+            {
+                if (project.name == ProjectName.Text)
                 {
                     File.Delete(project.file);
 

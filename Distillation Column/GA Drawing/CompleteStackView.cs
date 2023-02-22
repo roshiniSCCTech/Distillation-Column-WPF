@@ -22,8 +22,6 @@ namespace DistillationColumn
         T3D.Point endPoint = new T3D.Point();
         double platFromElevation = 0.0;
         List<double> elevation = new List<double>();
-        //List<double>  = new List<double>();
-        //List<double>  = new List<double>();
         List<double> accessDoorElevation = new List<double>();
         List<double> accessOri = new List<double>();
         List<double> circularAccessDoorElevation = new List<double>();
@@ -505,18 +503,7 @@ namespace DistillationColumn
                 count++;
             }
 
-            //List<double> elevationList1 = new List<double>();
-            //double elevation1 = _global.Origin.Z;
-            //foreach (var seg in _global.StackSegList)
-            //{
-            //    if (seg[0] == seg[1])
-            //    {
-            //        elevationList1.Add(seg[4]);
-                   
-            //    }
-
-
-            //}
+            
 
             startPoint = new T3D.Point(_global.Origin.X-3000, _global.Origin.Z);
             elevation = 0;
@@ -524,18 +511,9 @@ namespace DistillationColumn
             {
                 elevation+= elevationList[val];
                 endPoint = new T3D.Point(startPoint.X,elevation);
-                //if (val>0)
-                //{
-                //    endPoint = new T3D.Point(startPoint.X, elevationList[val] + elevationList[val - 1]);
-                //}
-                 
-                
                 DrawingUtils.CreateDimension(m_completeStackView, startPoint, endPoint);
-               
-
                 startPoint = new T3D.Point(endPoint.X, endPoint.Y);
-                //startPoint.Z = elevationList1[val] ;
-
+               
             }
            
         }

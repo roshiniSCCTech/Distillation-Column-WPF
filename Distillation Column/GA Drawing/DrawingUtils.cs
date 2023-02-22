@@ -595,26 +595,26 @@ namespace DistillationColumn
         //        }
         //    }
         //}
-        //public static void InsertStraightDimensionSet(ViewBase view, Tekla.Structures.Drawing.PointList pointList, char vector = 'h')
-        //{
-        //    if (view != null)
-        //    {
-        //        DrawingHandler dh = new DrawingHandler();
-        //        if (vector == 'h')
-        //        {
-        //            StraightDimensionSet.StraightDimensionSetAttributes straightDimensionAttributes = new StraightDimensionSet.StraightDimensionSetAttributes();
-        //            straightDimensionAttributes.LoadAttributes(DrawingSettings.DimensionAttributes);
-        //            StraightDimensionSet horDimension = new StraightDimensionSetHandler().CreateDimensionSet(view, pointList, new Tekla.Structures.Geometry3d.Vector(0, 100, 0), 100, straightDimensionAttributes);
-        //        }
-        //        else
-        //        {
-        //            StraightDimensionSet.StraightDimensionSetAttributes straightDimensionAttributes = new StraightDimensionSet.StraightDimensionSetAttributes();
-        //            straightDimensionAttributes.LoadAttributes(DrawingSettings.DimensionAttributes);
-        //            StraightDimensionSet verDimension = new StraightDimensionSetHandler().CreateDimensionSet(view, pointList, new Tekla.Structures.Geometry3d.Vector(100, 0, 0), 100, straightDimensionAttributes);
-        //        }
-        //        dh.GetActiveDrawing().CommitChanges();
-        //    }
-        //}
+        public static void InsertStraightDimensionSet(ViewBase view, Tekla.Structures.Drawing.PointList pointList, char vector = 'h')
+        {
+            if (view != null)
+            {
+                DrawingHandler dh = new DrawingHandler();
+                if (vector == 'h')
+                {
+                    StraightDimensionSet.StraightDimensionSetAttributes straightDimensionAttributes = new StraightDimensionSet.StraightDimensionSetAttributes();
+                    straightDimensionAttributes.LoadAttributes(DrawingSettings.DimensionAttributes);
+                    StraightDimensionSet horDimension = new StraightDimensionSetHandler().CreateDimensionSet(view, pointList, new Tekla.Structures.Geometry3d.Vector(0, 100, 0), 100, straightDimensionAttributes);
+                }
+                else
+                {
+                    StraightDimensionSet.StraightDimensionSetAttributes straightDimensionAttributes = new StraightDimensionSet.StraightDimensionSetAttributes();
+                    straightDimensionAttributes.LoadAttributes(DrawingSettings.DimensionAttributes);
+                    StraightDimensionSet verDimension = new StraightDimensionSetHandler().CreateDimensionSet(view, pointList, new Tekla.Structures.Geometry3d.Vector(100, 0, 0), 100, straightDimensionAttributes);
+                }
+                dh.GetActiveDrawing().CommitChanges();
+            }
+        }
 
         //public static void InsertInstrumentTags(View view, string tag_name, double orientation, double d)
         //{
