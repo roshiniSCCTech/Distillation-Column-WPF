@@ -53,17 +53,18 @@ namespace DistillationColumn
                 _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(currentPlane);
                 //MessageBox.Show(exception.ToString());
             }
-            new ChairView(_global,_tModel,jsonStr);
+            //new ChairView(_global,_tModel,jsonStr);
             //BuildDrawing(new InstrumentVIews(drawingInst), jsonStr);
             //BuildDrawing(new PlatformView(drawingInst), jsonStr);
             //BuildDrawing(new SpliceView(drawingInst), jsonStr);
             //BuildDrawing(new FloorSteelView(drawingInst), jsonStr);
             //BuildDrawing(new DuctOpeningView(drawingInst), jsonStr);
             //BuildDrawing(new PaintersTrolleyView(drawingInst), jsonStr);
+            new InstrumentVIews(_global, _tModel, jsonStr);
 
             _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(currentPlane); //return original plane
             drawingInst.PlaceViews();
-            dwgHandler.CloseActiveDrawing(true);
+           // dwgHandler.CloseActiveDrawing(true);
             MessageBox.Show("GaDrawing is finished.Please check in Document Manager");
         }
 

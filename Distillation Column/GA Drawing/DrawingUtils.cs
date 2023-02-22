@@ -750,18 +750,18 @@ namespace DistillationColumn
         //    }
         //}
 
-        //public static void CheckRotation(View view, double angle)
-        //{
-        //    if (view != null)
-        //    {
-        //        if (angle >= 45 && angle < (90 + 45))
-        //            view.RotateViewOnDrawingPlane(-90);
-        //        else if (angle >= (90 + 45) && angle < (180 + 45))
-        //            view.RotateViewOnDrawingPlane(180);
-        //        else if (angle >= (180 + 45) && angle < (270 + 45))
-        //            view.RotateViewOnDrawingPlane(90);
-        //    }
-        //}
+        public static void CheckRotation(View view, double angle)
+        {
+            if (view != null)
+            {
+                if (angle >= 45 && angle < (90 + 45))
+                    view.RotateViewOnDrawingPlane(-90);
+                else if (angle >= (90 + 45) && angle < (180 + 45))
+                    view.RotateViewOnDrawingPlane(180);
+                else if (angle >= (180 + 45) && angle < (270 + 45))
+                    view.RotateViewOnDrawingPlane(90);
+            }
+        }
 
         //public static string CheckFileExist(string path)
         //{

@@ -65,7 +65,7 @@ namespace DistillationColumn
             foreach (JToken instrumentnozzle in instrumentNozzleList)
             {
                 elevation = (float)instrumentnozzle["elevation"];
-                orientationAngle = (float)instrumentnozzle["orientation_angle"];
+                orientationAngle = (float)instrumentnozzle["orientation_angle"] * Math.PI / 180;
                 numberOfBolts = (float)instrumentnozzle["number_of_bolts"];
                 pipeLength= (float)instrumentnozzle["pipe_length"];
 
