@@ -512,8 +512,10 @@ namespace DistillationColumn
                 phi = Math.Asin((ladderWidth / 2) / (radius + length));
                 bracketPoint2 = _tModel.ShiftHorizontallyRad(origin, radius + length, 1, orientationAngle + phi);
             }
-            bracketPoint1 = _tModel.ShiftAlongCircumferenceRad(bracketPoint1, 200, 2);
+            //bracketPoint1 = _tModel.ShiftAlongCircumferenceRad(bracketPoint1, 200, 2);
+       
             bracketPoint2 = _tModel.ShiftAlongCircumferenceRad(bracketPoint2, 200, 2);
+            bracketPoint1 = _tModel.ShiftHorizontallyRad(bracketPoint2, length + 40, 3);
 
             length = _tModel.DistanceBetweenPoints(bracketPoint1, bracketPoint2) - 40;
 
