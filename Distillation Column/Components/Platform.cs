@@ -68,6 +68,19 @@ namespace DistillationColumn
                 origin = _tModel.ShiftVertically(_global.Origin, elevation + 100);
                 innerPlateWidth = (radius + 25) / (radius + platformLength - 25) * plateWidth;
 
+                // 0 0 360 bug fix
+                if(platformEndAngle == platformStartAngle + (2 * Math.PI) && orientationAngle == platformEndAngle)
+                {
+                    orientationAngle = platformStartAngle;
+                }
+
+                if(platformStartAngle > platformEndAngle)
+                {
+                    orientationAngle = orientationAngle + (2 * Math.PI);   
+                    platformEndAngle = platformEndAngle + (2 * Math.PI);
+                }
+                //platformEndAngle = (platformStartAngle > platformEndAngle) ? platformEndAngle + (2 * Math.PI) : platformEndAngle; 
+
                 if (platformStartAngle < 0)
                 {
                     platformStartAngle += Math.PI * 2;
