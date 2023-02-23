@@ -156,6 +156,7 @@
     <Compile Include="GA Drawing\FlangeView.cs" />
     <Compile Include="GA Drawing\IDrawingView.cs" />
     <Compile Include="GA Drawing\InstrumentVIews.cs" />
+    <Compile Include="GA Drawing\PlatformView.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

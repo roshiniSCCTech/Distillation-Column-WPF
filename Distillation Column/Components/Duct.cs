@@ -554,7 +554,7 @@ namespace DistillationColumn
             CPart2.SetAttribute("P19", flange_PlateWidth);
             CPart2.SetAttribute("P21", doubler_plate_Width);
             CPart2.Insert();
-            _tModel.Model.CommitChanges();
+            //_tModel.Model.CommitChanges();
 
 
             double theta = Math.Asin((duct_Width / 2) / radius);

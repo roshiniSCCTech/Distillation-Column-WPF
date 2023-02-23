@@ -77,44 +77,54 @@ namespace DistillationColumn
                 obstructionDistance = grating[10];
                 HandrailAtLadderLocation();
 
-                if (platformStartAngle != 0 && platformEndAngle != 360)
+               
+                if (platformStartAngle != ladderOrientation)
                 {
-                    if (platformStartAngle != ladderOrientation)
+                    double l = platformLength;
+                    if (platformStartAngle == extensionStartAngle)
                     {
-                        double l = platformLength;
-                        if (platformStartAngle == extensionStartAngle)
-                        {
-                            l += extensionLength;
-                        }
+                        l += extensionLength;
+                    }
+                    if((platformEndAngle-platformStartAngle)==360)
+                    {
+                        
+                    }
+                    else
+                    {
                         HandRailAtStartAndEnd(platformStartAngle, l, "start");
                     }
-                    if (platformEndAngle != ladderOrientation)
+                        
+                }
+                if (platformEndAngle != ladderOrientation)
+                {
+                    double l = platformLength;
+                    if (platformEndAngle == extensionEndAngle)
                     {
-                        double l = platformLength;
-                        if (platformEndAngle == extensionEndAngle)
-                        {
-                            l += extensionLength;
-                        }
+                        l += extensionLength;
+                    }
+                    if ((platformEndAngle - platformStartAngle) == 360)
+                    {
+                        
+                    }
+                    else
+                    {
                         HandRailAtStartAndEnd(platformEndAngle, l, "end");
                     }
                 }
+                
 
-                if (platformStartAngle == 0 && platformEndAngle == 360)
+                if ((platformEndAngle - platformStartAngle) == 360)
                 {
                     radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
                     gratingOuterRadius = (radius + 25 + 10) + distanceFromStack + length;
-                    if (platformStartAngle == ladderOrientation)
+                    if ((platformStartAngle == ladderOrientation) || (platformEndAngle == ladderOrientation))
                     {
                         theta = 180 / Math.PI * (Math.Atan((ladderWidth + 320) / (gratingOuterRadius * 2)));
                         platformEndAngle = platformEndAngle - theta;
-                    }
-
-                    if (platformEndAngle == ladderOrientation)
-                    {
-                        theta = 180 / Math.PI * (Math.Atan((ladderWidth + 320) / (gratingOuterRadius * 2)));
                         platformStartAngle = platformStartAngle + theta;
                     }
 
+                    
                 }
 
 
@@ -185,7 +195,7 @@ namespace DistillationColumn
 
 
             }
-            _tModel.Model.CommitChanges();
+            //_tModel.Model.CommitChanges();
         }
 
         public void ShiftAngle()
@@ -669,7 +679,7 @@ namespace DistillationColumn
 
             if (!B.Insert())
                 Console.WriteLine("Bolt Insert failed!");
-            _tModel.Model.CommitChanges();
+            //_tModel.Model.CommitChanges();
 
 
         }

@@ -111,7 +111,7 @@ namespace DistillationColumn
                 CPart.SetAttribute("bottomRingWidth", bottomRingWidth);
 
                 CPart.Insert();
-                _tModel.Model.CommitChanges();
+                //_tModel.Model.CommitChanges();
 
             }
 

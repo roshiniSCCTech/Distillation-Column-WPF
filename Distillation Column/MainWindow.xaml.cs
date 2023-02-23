@@ -108,9 +108,9 @@ namespace DistillationColumn
 
             new ComponentHandler(_global, _tModel, checkComponents);
 
-            new DrawingBuilder(_global, _tModel, jDataString);
+            //new DrawingBuilder(_global, _tModel, jDataString);
             //new PlatformView(_global, _tModel, jDataString);
-            //MessageBox.Show("Completed");
+            MessageBox.Show("Completed");
 
 
         }

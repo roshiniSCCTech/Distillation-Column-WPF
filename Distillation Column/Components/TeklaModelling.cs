@@ -31,7 +31,7 @@ namespace HelperLibrary
 
       if (beam.Insert())
       {
-        Model.CommitChanges();
+        //Model.CommitChanges();
       }
 
       return beam;
@@ -52,7 +52,7 @@ namespace HelperLibrary
 
       if (polybeam.Insert())
       {
-        Model.CommitChanges();
+        //Model.CommitChanges();
       }
 
       return polybeam;
@@ -73,7 +73,7 @@ namespace HelperLibrary
 
       if (plate.Insert())
       {
-        Model.CommitChanges();
+        //Model.CommitChanges();
       }
 
       return plate;
@@ -86,7 +86,7 @@ namespace HelperLibrary
       booleanPart.SetOperativePart(cut);
       booleanPart.Insert();
       cut.Delete();
-      Model.CommitChanges();
+     // Model.CommitChanges();
     }
 
   }

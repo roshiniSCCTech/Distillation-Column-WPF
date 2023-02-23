@@ -32,6 +32,7 @@ namespace DistillationColumn
             double stackElevation = _global.StackSegList[lastStackCount][4] + _global.StackSegList[lastStackCount][3];
 
             //Tekla.Structures.Drawing.Size A1Size = new Tekla.Structures.Drawing.Size(841, 594);
+           
             Tekla.Structures.Drawing.Size A1SizePortrait = new Tekla.Structures.Drawing.Size(594,1000);
             GADrawing drawingInst = new GADrawing("LCH", A1SizePortrait);
             drawingInst.Name = "General Arrangement Drawing";
@@ -55,13 +56,8 @@ namespace DistillationColumn
                 
             }
             new ChairView(_global,_tModel,jsonStr);
-            //BuildDrawing(new InstrumentVIews(drawingInst), jsonStr);
             new FlangeView(_global, _tModel, jsonStr);
-            //new PlatformView(_global,_tModel, jsonStr);
-            //BuildDrawing(new SpliceView(drawingInst), jsonStr);
-            //BuildDrawing(new FloorSteelView(drawingInst), jsonStr);
-            //BuildDrawing(new DuctOpeningView(drawingInst), jsonStr);
-            //BuildDrawing(new PaintersTrolleyView(drawingInst), jsonStr);
+            new PlatformView(_global,_tModel, jsonStr);
             new InstrumentVIews(_global, _tModel, jsonStr);
 
             _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(currentPlane); //return original plane

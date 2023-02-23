@@ -195,7 +195,7 @@ namespace DistillationColumn
             B.NumberOfBolts =numberOfBolts;
             B.Diameter = plateRadius*1.5;
             B.Insert();
-            _tModel.Model.CommitChanges();
+           // _tModel.Model.CommitChanges();
         }
     }
 }

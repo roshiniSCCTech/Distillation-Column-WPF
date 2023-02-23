@@ -357,7 +357,7 @@ namespace DistillationColumn
 
                 }
 
-                _tModel.Model.CommitChanges();
+                //_tModel.Model.CommitChanges();
                 double RungDistance = 0;
                 if (count1 == _ladderList.Count - 1)
                 {
@@ -417,7 +417,7 @@ namespace DistillationColumn
                 count++;
 
             }
-            _tModel.Model.CommitChanges();
+            //_tModel.Model.CommitChanges();
         }
 
         void CreateBolts(ContourPlate p1, ContourPlate p2, ContourPoint p3, ContourPoint p4)
@@ -468,7 +468,7 @@ namespace DistillationColumn
 
             if (!B.Insert())
                 Console.WriteLine("BoltXYList Insert failed!");
-            _tModel.Model.CommitChanges();
+            //_tModel.Model.CommitChanges();
         }
 
         void CreatePlate(TSM.ContourPoint point2, TSM.ContourPoint point21, double rungDistance, double count)

@@ -68,6 +68,8 @@ namespace DistillationColumn
             }
             //new Duct(_global, _tModel);
 
+            _tModel.Model.CommitChanges();
+
         }
     }
 }

@@ -70,44 +70,52 @@ namespace DistillationColumn
 
                 HandrailAtLadderLocation();
 
-                if (platformStartAngle != 0 && platformEndAngle != 360)
+                if (platformStartAngle != ladderOrientation)
                 {
-                    if (platformStartAngle != ladderOrientation)
+                    double l = platformLength;
+                    if (platformStartAngle == extensionStartAngle)
                     {
-                        double l = platformLength;
-                        if (platformStartAngle == extensionStartAngle)
-                        {
-                            l += extensionLength;
-                        }
-                        CreateSideHandrail(platformStartAngle, l);
+                        l += extensionLength;
                     }
-                    if (platformEndAngle != ladderOrientation)
+                    if ((platformEndAngle - platformStartAngle) == 360)
                     {
-                        double l = platformLength;
-                        if (platformEndAngle == extensionEndAngle)
-                        {
-                            l += extensionLength;
-                        }
-                        CreateSideHandrail(platformEndAngle, l);
+
+                    }
+                    else
+                    {
+                        CreateSideHandrail(platformStartAngle, l);
                     }
 
                 }
+                if (platformEndAngle != ladderOrientation)
+                {
+                    double l = platformLength;
+                    if (platformEndAngle == extensionEndAngle)
+                    {
+                        l += extensionLength;
+                    }
+                    if ((platformEndAngle - platformStartAngle) == 360)
+                    {
 
-                if (platformStartAngle == 0 && platformEndAngle == 360)
+                    }
+                    else
+                    {
+                        CreateSideHandrail(platformEndAngle, l);
+                    }
+                }
+
+
+                if ((platformEndAngle - platformStartAngle) == 360)
                 {
                     radius = _tModel.GetRadiusAtElevation(elevation, _global.StackSegList, true);
                     gratingOuterRadius = (radius + 25 + 10) + distanceFromStack + length;
-                    if (platformStartAngle == ladderOrientation)
+                    if ((platformStartAngle == ladderOrientation) || (platformEndAngle == ladderOrientation))
                     {
                         theta = 180 / Math.PI * (Math.Atan((ladderWidth + 320) / (gratingOuterRadius * 2)));
                         platformEndAngle = platformEndAngle - theta;
-                    }
-
-                    if (platformEndAngle == ladderOrientation)
-                    {
-                        theta = 180 / Math.PI * (Math.Atan((ladderWidth + 320) / (gratingOuterRadius * 2)));
                         platformStartAngle = platformStartAngle + theta;
                     }
+
 
                 }
 
@@ -304,7 +312,7 @@ namespace DistillationColumn
                 handrail.Modify();
 
             }
-            _tModel.Model.CommitChanges();
+            //_tModel.Model.CommitChanges();
 
 
         }
@@ -504,7 +512,7 @@ namespace DistillationColumn
 
             if (!B.Insert())
                 Console.WriteLine("Bolt Insert failed!");
-            _tModel.Model.CommitChanges();
+           // _tModel.Model.CommitChanges();
 
 
 
@@ -836,7 +844,7 @@ namespace DistillationColumn
 
             if (!B.Insert())
                 Console.WriteLine("Bolt Insert failed!");
-            _tModel.Model.CommitChanges();
+            //_tModel.Model.CommitChanges();
         }
 
         void BentPipe(TSM.ContourPoint topPoint, TSM.ContourPoint bottomPoint, double l, double angle, double distance = 250)
@@ -974,7 +982,7 @@ namespace DistillationColumn
             CPart.SetAttribute("P2", 0);
 
             CPart.Modify();
-            _tModel.Model.CommitChanges();
+            //_tModel.Model.CommitChanges();
 
 
 
