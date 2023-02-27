@@ -9,6 +9,7 @@ using T3D = Tekla.Structures.Geometry3d;
 using Newtonsoft.Json.Linq;
 using Tekla.Structures.Model;
 using Newtonsoft.Json;
+using System.Collections;
 
 namespace DistillationColumn
 {
@@ -26,9 +27,14 @@ namespace DistillationColumn
         public readonly List<List<double>> StackSegList;
         public JObject JData;
         public List<Part> platformParts = new List<Part>();
-
+        public ArrayList _partList = new ArrayList();
         // list of stack segment parts
         public readonly List<TSM.Beam> SegmentPartList;
+        public ArrayList _chairPartList;
+        public ArrayList _flangePartList;
+        public ArrayList _handrailPartList;
+        public ArrayList _ductPartList;
+
 
 
         public Globals(JObject jData)
@@ -40,7 +46,10 @@ namespace DistillationColumn
             Position = new TSM.Position();
             StackSegList = new List<List<double>>();
             SegmentPartList = new List<TSM.Beam>();
-
+            _chairPartList= new ArrayList();
+            _ductPartList= new ArrayList();
+            _handrailPartList= new ArrayList();
+            _flangePartList= new ArrayList();
             JData = jData;
 
             SetStackData();

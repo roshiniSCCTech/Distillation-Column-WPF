@@ -8,6 +8,8 @@ using Tekla.Structures.Model;
 using Tekla.Structures.Geometry3d;
 using Newtonsoft.Json.Linq;
 using Render;
+using System.Collections;
+
 
 namespace DistillationColumn
 {
@@ -23,6 +25,7 @@ namespace DistillationColumn
         public double shellThickness;
         List<Part> _ringList;
         public Globals _global;
+        ArrayList _FlangePart;
         public TeklaModelling _tModel;
         List<List<double>> _flangelist;
 
@@ -32,6 +35,7 @@ namespace DistillationColumn
             _tModel = tModel;
             _ringList = new List<Part>();
             _flangelist = new List<List<double>>();
+            _FlangePart=new ArrayList();
             SetFlangeData();
             BuildFlange();
             
@@ -66,7 +70,10 @@ namespace DistillationColumn
                 numberOfBolts = flange[5];
 
                 CreateFlange();
+               
+
             }
+            
         }
 
      
@@ -106,11 +113,10 @@ namespace DistillationColumn
                 CPart.SetAttribute("bolt_standard_screwdin", "UNDEINED_BOLT");
                 CPart.SetAttribute("Cut_Length", -420);
                 CPart.SetAttribute("bolt_diameter", 20);
-
-
-
-                CPart.Insert();
+                CPart.Insert();              
                // _tModel.Model.CommitChanges();
+
+
 
             }
         }

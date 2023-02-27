@@ -18,6 +18,7 @@ namespace DistillationColumn
         TeklaModelling _tModel;
 
         List<TSM.ContourPoint> _pointsList;
+       
 
         TSM.ContourPoint origin;
         double ladderWidth = 790; // 470 (ladderWidth rung to rung) + 2 * 100 (stringer width) + 2 * 50 (handrail diameter) + 2 * 10 (weld plate thickness)
@@ -45,7 +46,7 @@ namespace DistillationColumn
             _tModel = tModel;
 
             _pointsList = new List<TSM.ContourPoint>();
-
+           
             List<JToken> platformList = _global.JData["Platform"].ToList();
 
             foreach (JToken platform in platformList)

@@ -136,6 +136,7 @@
     <Compile Include="Components\InstrumentNozzleData.cs" />
     <Compile Include="Components\Ladder.cs" />
     <Compile Include="Components\OriginData.cs" />
+    <Compile Include="Components\PartList.cs" />
     <Compile Include="Components\Platform.cs" />
     <Compile Include="Components\PlatformData.cs" />
     <Compile Include="Components\Projects.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Components\RectangularPlatformData.cs" />
     <Compile Include="Components\Stack.cs" />
     <Compile Include="Components\StackData.cs" />
+    <Compile Include="Components\StackModuleAssembly.cs" />
     <Compile Include="Components\StiffnerRingData.cs" />
     <Compile Include="Components\StiffnerRings.cs" />
     <Compile Include="Components\TeklaModelling.cs" />

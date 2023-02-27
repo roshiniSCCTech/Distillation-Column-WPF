@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 using Tekla.Structures.Model;
 using static Tekla.Structures.Filtering.Categories.PartFilterExpressions;
 using static Tekla.Structures.Filtering.Categories.ReinforcingBarFilterExpressions;
-using Tekla.Structures.ModelInternal;
 using Tekla.Structures.Geometry3d;
 using Tekla.Structures.Datatype;
+using TSMUI = Tekla.Structures.Model.UI;
+using Tekla.Structures.Model.Operations;
 using Newtonsoft.Json.Linq;
+using System.Collections;
+
 
 namespace DistillationColumn
 {
@@ -29,9 +32,9 @@ namespace DistillationColumn
         public Globals _global;
         public TeklaModelling _tModel;
         List<Part> _rings;
+        ArrayList _part;
 
 
-       
 
 
         public Chair(Globals global, TeklaModelling tModel)
@@ -40,9 +43,13 @@ namespace DistillationColumn
             _tModel = tModel;
            
             _rings = new List<Part>();
-
+           
+            _part= new ArrayList();
             SetChairData();
             CreateChair();
+
+            
+            
         }
         public void SetChairData()
         {
@@ -111,7 +118,7 @@ namespace DistillationColumn
                 CPart.SetAttribute("bottomRingWidth", bottomRingWidth);
 
                 CPart.Insert();
-                //_tModel.Model.CommitChanges();
+                             
 
             }
 

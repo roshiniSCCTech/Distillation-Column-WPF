@@ -69,41 +69,19 @@ namespace DistillationColumn
             chair_plateLength = (double)(jsonData["chair"]["height"])+baseRingThickness+upperRingThickness;
             //tailingLugAngle = (double)(jsonData["chairInput"]["tailing_lug_orientation_angle"]["value"]);
             numOfStiffnerPlates = 4*((double)(jsonData["chair"]["number_of_plates"]));
-            //tailingLugFrontWidth = (double)(jsonData["chairInput"]["chair_tailing_lug_B"]["value"]) * 1000;
-            //distUpBolt = (double)(jsonData["chairInput"]["chair_bottom_ring_width"]["value"]) * 1000;
+            
             insideStackDistance = (double)(jsonData["chair"]["inside_distance"]);
             x = (double)(jsonData["origin"]["x"]) ;
             y = (double)(jsonData["origin"]["y"]);
-            //tailingLugInsideCircleDia = (double)(jsonData["chairInput"]["chair_tailing_lug_D"]["value"]);
-            // End
+           
             origin = new T3D.Point(_global.Origin.X,_global.Origin.Y );
-            //for (int i = 1; i < _global.StackSegList.Count; i++)
-            //{
-            //    if (_global.StackSegList[i][4] > elevation_chair)
-            //    {
-            //        //stackTotalHeight = (_global.StackSegList[i][3]);
-            //        //rad = (_global.StackSegList[i - 1][1]) / 2;
-            //        stack_thinkness = _global.StackSegList[i - 1][2];
-            //        stack_radius = (_global.StackSegList[i - 1][1]) / 2;
-            //        bottom_radius = (_global.StackSegList[i - 1][0] / 2);
-            //        //seg_Height = (_global.StackSegList[i - 1][3]);
-            //        break;
-            //    }
-            //}
+           
             bottom_radius = _tModel.GetRadiusAtElevation(baseRingThickness,_global.StackSegList,true);
             //int n = _tModel.GetSegmentAtElevation(chair_plateLength + baseRingThickness,_global.StackSegList);
             stack_radius = _tModel.GetRadiusAtElevation(chair_plateLength + baseRingThickness, _global.StackSegList,true);
             stack_thinkness = _global.StackSegList[0][2];
           
-            //if (stack_radius == bottom_radius)
-            //{
-
-            //}
-            //else
-            //{
-            //    double radius = _tModel.GetRadiusAtElevation(elevation_chair+chair_plateLength+baseRingThickness,_global.StackSegList,true);
-            //    stack_radius = radius;
-            //}
+           
             T3D.Point startPoint = new T3D.Point(-(bottom_radius + BaseRingWidth -x), (elevation_chair + chair_plateLength));
             T3D.Point endPoint = new T3D.Point((bottom_radius + BaseRingWidth + x), (elevation_chair + chair_plateLength));
             double depthUp = 0;
@@ -116,18 +94,11 @@ namespace DistillationColumn
             }
 
             //Side View of Chair at bolt degree
-           // double angle = (2 * Math.PI / numOfStiffnerPlates);
+          
             startPoint = DrawingUtils.ShiftRadiallyPoint(origin, (bottom_radius  + BaseRingWidth) / 2, 0);
             endPoint = DrawingUtils.ShiftRadiallyPoint(origin, 2 * bottom_radius, 0);
             chairSideView = DrawingUtils.AddGASideView(chairSectionView, startPoint, endPoint);
-            
-            //Side view of Chair at Retention Tail
-
-            //startPoint = DrawingUtils.ShiftRadiallyPoint(origin, (stack_radius + stack_thinkness), tailingLugAngle);
-            //endPoint = DrawingUtils.ShiftRadiallyPoint(origin, stack_radius + stack_radius / 2, tailingLugAngle);
-
-            //tailingLugSideView = DrawingUtils.AddGASideView(chairSectionView, startPoint, endPoint);
-            // DrawingUtils.CheckRotation(tailingLugSideView, tailingLugAngle);
+           
 
             InsertDimensions(_global,_tModel);
         }
