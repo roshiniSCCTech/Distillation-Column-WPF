@@ -443,5 +443,15 @@ namespace DistillationColumn
                 }
             }
         }
+
+        private void Check_Model_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Check_GADrawing_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

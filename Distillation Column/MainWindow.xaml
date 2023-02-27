@@ -267,8 +267,8 @@
                     <CheckBox x:Name="Check_Ladder" Content="Ladder" HorizontalAlignment="Left" Margin="109,51,0,0" VerticalAlignment="Top" Width="125" Height="36" FontSize="18" Grid.Row="1"/>
                     <CheckBox x:Name="Check_Instrument_Nozzle" Content="Instrument Nozzle" HorizontalAlignment="Left" Margin="368,207,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
                     <Button x:Name="Check_CreateModel" Content="Create Model" HorizontalAlignment="Left" Height="52" Margin="715,629,0,0" VerticalAlignment="Top" Width="203" Click="createModel"/>
-                    <CheckBox x:Name="Check_Model" Content="Create Model" HorizontalAlignment="Left" Margin="109,450,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
-                    <CheckBox x:Name="Check_GADrawing" Content="Create GADrawing" HorizontalAlignment="Left" Margin="368,450,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18"/>
+                    <CheckBox x:Name="Check_Model" Content="Create Model" HorizontalAlignment="Left" Margin="109,450,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18" Checked="Check_Model_Checked"/>
+                    <CheckBox x:Name="Check_GADrawing" Content="Create GADrawing" HorizontalAlignment="Left" Margin="368,450,0,0" VerticalAlignment="Top" Width="200" Height="36" FontSize="18" Checked="Check_GADrawing_Checked"/>
                 </Grid>
             </TabItem>
         </TabControl>
