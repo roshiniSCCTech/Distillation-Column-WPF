@@ -110,6 +110,7 @@ namespace DistillationColumn
 
             //new DrawingBuilder(_global, _tModel, jDataString);
             //new PlatformView(_global, _tModel, jDataString);
+            new AssemblyDrawingBuilder(_global, _tModel, jDataString);
             MessageBox.Show("Completed");
 
 

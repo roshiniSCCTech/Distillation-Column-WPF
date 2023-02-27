@@ -30,12 +30,9 @@ namespace DistillationColumn
         public ArrayList _partList = new ArrayList();
         // list of stack segment parts
         public readonly List<TSM.Beam> SegmentPartList;
-        public ArrayList _chairPartList;
-        public ArrayList _flangePartList;
+        public List<ArrayList> _stackPartList;     
         public ArrayList _handrailPartList;
-        public ArrayList _ductPartList;
-
-
+        
 
         public Globals(JObject jData)
         {
@@ -46,10 +43,8 @@ namespace DistillationColumn
             Position = new TSM.Position();
             StackSegList = new List<List<double>>();
             SegmentPartList = new List<TSM.Beam>();
-            _chairPartList= new ArrayList();
-            _ductPartList= new ArrayList();
+            _stackPartList= new List<ArrayList>();
             _handrailPartList= new ArrayList();
-            _flangePartList= new ArrayList();
             JData = jData;
 
             SetStackData();

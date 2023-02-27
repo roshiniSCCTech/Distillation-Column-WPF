@@ -15,15 +15,19 @@ namespace DistillationColumn
         Globals _global;
         TeklaModelling _tModel;
         Assembly gratingAssembly;
+        ArrayList _chairList;
+        ArrayList _flangeList;
         public PartList(Globals global, TeklaModelling tModel)
         {
             _global = global;
             _tModel = tModel;
+            _chairList = new ArrayList();
+            _flangeList= new ArrayList();
             setPartList();
-            ChairAssembly(_global._chairPartList);
-            MessageBox.Show("Dot");
-            StackModuleAssembly stack = new StackModuleAssembly(_global,_tModel);
-            stack.Build(gratingAssembly);
+            //StackAssembly(_global._stackPartList);
+            //MessageBox.Show("Dot");
+            //StackModuleAssembly stack = new StackModuleAssembly(_global,_tModel);
+            //stack.Build(gratingAssembly);
 
         }
 
@@ -37,13 +41,13 @@ namespace DistillationColumn
                 //chair rings
                 if (polybeam.Name == "TopRing" || polybeam.Name == "BottomRing")
                 {
-                    _global._chairPartList.Add(polybeam);
+                    _chairList.Add(polybeam);
                 }
 
                 //flange rings
                 if (polybeam.Name == "FlangeTopRing" || polybeam.Name == "FlangeBottomRing")
                 {
-                    _global._flangePartList.Add(polybeam);
+                    _flangeList.Add(polybeam);
                 }
 
                 //handrail midrail and toprail
@@ -63,7 +67,7 @@ namespace DistillationColumn
                 //chair stiffner plates
                 if (plate.Name == "StiffnerPlates")
                 {
-                    _global._chairPartList.Add(plate);
+                    _chairList.Add(plate);
                 }
 
             }
@@ -77,34 +81,37 @@ namespace DistillationColumn
                     _global._handrailPartList.Add(beam);
                 }
             }
+
+            _global._stackPartList.Add(_chairList);
+            _global._stackPartList.Add(_flangeList);
         }
 
 
-        public void ChairAssembly(ArrayList assembly)
-        {
-            try
-            {
+        //public void StackAssembly(ArrayList assembly)
+        //{
+        //    try
+        //    {
 
-                gratingAssembly = new Assembly();
-                foreach (var val in assembly)
-                {
-                    gratingAssembly = (val as Part).GetAssembly();
-                    (val as Part).PartNumber.Prefix = "SGR";
-                    (val as Part).Modify();
+        //        gratingAssembly = new Assembly();
+        //        foreach (var val in assembly)
+        //        {
+        //            gratingAssembly = (val as Part).GetAssembly();
+        //            (val as Part).PartNumber.Prefix = "SGR";
+        //            (val as Part).Modify();
 
-                }
-                gratingAssembly.Add(assembly);
-                gratingAssembly.AssemblyNumber.Prefix = "SGR";
-                gratingAssembly.Modify();
-                //GratingDrawingAsssemblyList.Add(gratingAssembly);
+        //        }
+        //        gratingAssembly.Add(assembly);
+        //        gratingAssembly.AssemblyNumber.Prefix = "SGR";
+        //        gratingAssembly.Modify();
+        //        //GratingDrawingAsssemblyList.Add(gratingAssembly);
 
 
-            }
-            catch (Exception ex)
-            {
-                // MessageBox.Show(ex.ToString());
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
 
 
