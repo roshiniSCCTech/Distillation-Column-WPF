@@ -106,7 +106,19 @@ namespace DistillationColumn
 
             _tModel = new TeklaModelling(_global.Origin.X, _global.Origin.Y, _global.Origin.Z);
 
-            new ComponentHandler(_global, _tModel, checkComponents);
+            // new ComponentHandler(_global, _tModel, checkComponents);
+
+            if (checkComponents["create_model"].Value)
+            {
+                new ComponentHandler(_global, _tModel, checkComponents);
+            }
+
+
+            if (checkComponents["create_GAdrawing"].Value)
+            {
+                new DrawingBuilder(_global, _tModel, jDataString);
+            }
+
 
             //new DrawingBuilder(_global, _tModel, jDataString);
             //new PlatformView(_global, _tModel, jDataString);
@@ -327,6 +339,8 @@ namespace DistillationColumn
             checkComponents.Add("instrument_nozzle", Check_Instrument_Nozzle.IsChecked);
             checkComponents.Add("ladder", Check_Ladder.IsChecked);
             checkComponents.Add("circular_access_door", Check_Circular_Access_Door.IsChecked);
+            checkComponents.Add("create_model", Check_Model.IsChecked);
+            checkComponents.Add("create_GAdrawing", Check_GADrawing.IsChecked);
         }
 
         private void addRowFlange(object sender, RoutedEventArgs e)
