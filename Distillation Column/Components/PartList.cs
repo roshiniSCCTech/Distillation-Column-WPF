@@ -22,7 +22,7 @@ namespace DistillationColumn
             _global = global;
             _tModel = tModel;
             _chairList = new ArrayList();
-            _flangeList= new ArrayList();
+            _flangeList = new ArrayList();
             setPartList();
             //StackAssembly(_global._stackPartList);
             //MessageBox.Show("Dot");
@@ -51,7 +51,7 @@ namespace DistillationColumn
                 }
 
                 //handrail midrail and toprail
-                if (polybeam.Name == "TopRail_Type3" || polybeam.Name == "MidRail_Type3" || polybeam.Name == "StartBent_Type3" || polybeam.Name == "EndBent_Type3")
+                if (polybeam.Name == "TopRail_Type3" || polybeam.Name == "MidRail1_Type3" || polybeam.Name == "MidRail2_Type3" || polybeam.Name == "StartBent_Type3" || polybeam.Name == "EndBent_Type3")
                 {
                     _global._handrailPartList.Add(polybeam);
                 }
@@ -69,6 +69,7 @@ namespace DistillationColumn
                 {
                     _chairList.Add(plate);
                 }
+                
 
             }
 
@@ -79,11 +80,16 @@ namespace DistillationColumn
                 if (beam.Name == "FirstPost_Type3" || beam.Name == "SecondPost_Type3" || beam.Name == "ThirdPost_Type3")
                 {
                     _global._handrailPartList.Add(beam);
+                    _global.handrailCollection.Add(_global._handrailPartList);
+                    _global._handrailPartList = new ArrayList();
+
                 }
+                
             }
 
             _global._stackPartList.Add(_chairList);
             _global._stackPartList.Add(_flangeList);
+
         }
 
 

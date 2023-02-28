@@ -32,7 +32,8 @@ namespace DistillationColumn
         public readonly List<TSM.Beam> SegmentPartList;
         public List<ArrayList> _stackPartList;     
         public ArrayList _handrailPartList;
-        
+        public List<ArrayList> handrailCollection;
+
 
         public Globals(JObject jData)
         {
@@ -45,6 +46,7 @@ namespace DistillationColumn
             SegmentPartList = new List<TSM.Beam>();
             _stackPartList= new List<ArrayList>();
             _handrailPartList= new ArrayList();
+            handrailCollection=new List<ArrayList>();
             JData = jData;
 
             SetStackData();

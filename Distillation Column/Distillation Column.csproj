@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="Assembly Drawing\AssemblyDrawingBuilder.cs" />
     <Compile Include="Assembly Drawing\CAssemblyDrawingView.cs" />
+    <Compile Include="Assembly Drawing\HandrailAssemblyDrawing.cs" />
     <Compile Include="Assembly Drawing\IAssemblyDrawingView.cs" />
     <Compile Include="Assembly Drawing\StackModuleAssemblyDrawings.cs" />
     <Compile Include="Components\AccessDoor.cs" />
