@@ -51,10 +51,10 @@ namespace DistillationColumn
                 }
 
                 //handrail midrail and toprail
-                if (polybeam.Name == "TopRail_Type3" || polybeam.Name == "MidRail1_Type3" || polybeam.Name == "MidRail2_Type3" || polybeam.Name == "StartBent_Type3" || polybeam.Name == "EndBent_Type3")
-                {
-                    _global._handrailPartList.Add(polybeam);
-                }
+                //if (polybeam.Name == "TopRail_Type3" || polybeam.Name == "MidRail1_Type3" || polybeam.Name == "MidRail2_Type3" || polybeam.Name == "StartBent_Type3" || polybeam.Name == "EndBent_Type3")
+                //{
+                //    _global._handrailPartList.Add(polybeam);
+                //}
 
             }
 
@@ -73,19 +73,50 @@ namespace DistillationColumn
 
             }
 
-            Obj = _tModel.Model.GetModelObjectSelector().GetAllObjectsWithType(ModelObject.ModelObjectEnum.BEAM);
+            //Obj = _tModel.Model.GetModelObjectSelector().GetAllObjectsWithType(ModelObject.ModelObjectEnum.BEAM);
 
-            foreach (Beam beam in Obj)
+            //foreach (Beam beam in Obj)
+            //{
+            //    if (beam.Name == "FirstPost_Type3" || beam.Name == "SecondPost_Type3" || beam.Name == "ThirdPost_Type3")
+            //    {
+            //        _global._handrailPartList.Add(beam);
+            //        //_global.handrailCollection.Add(_global._handrailPartList);
+            //        //_global._handrailPartList = new ArrayList();
+
+            //    }
+
+            //}
+
+            for (int i = 0; i < Handrail.count; i++)
             {
-                if (beam.Name == "FirstPost_Type3" || beam.Name == "SecondPost_Type3" || beam.Name == "ThirdPost_Type3")
+
+                Obj = _tModel.Model.GetModelObjectSelector().GetAllObjectsWithType(ModelObject.ModelObjectEnum.BEAM);
+
+                foreach (Beam beam in Obj)
                 {
-                    _global._handrailPartList.Add(beam);
-                    _global.handrailCollection.Add(_global._handrailPartList);
-                    _global._handrailPartList = new ArrayList();
+                    if (beam.Name == "FirstPost_Type3"+i || beam.Name == "SecondPost_Type3"+i || beam.Name == "ThirdPost_Type3"+i)
+                    {
+                        _global._handrailPartList.Add(beam);
+                        
+                    }
 
                 }
-                
+
+                //handrail midrail and toprail
+                Obj = _tModel.Model.GetModelObjectSelector().GetAllObjectsWithType(ModelObject.ModelObjectEnum.POLYBEAM);               
+                foreach (PolyBeam polybeam in Obj)
+                {
+                    if (polybeam.Name == "TopRail_Type3"+i || polybeam.Name == "MidRail1_Type3"+i || polybeam.Name == "MidRail2_Type3"+i || polybeam.Name == "StartBent_Type3"+i || polybeam.Name == "EndBent_Type3"+i)
+                    {
+                        _global._handrailPartList.Add(polybeam);
+                    }
+                }
+
+
+                _global.handrailCollection.Add(_global._handrailPartList);
+                _global._handrailPartList = new ArrayList();
             }
+
 
             _global._stackPartList.Add(_chairList);
             _global._stackPartList.Add(_flangeList);

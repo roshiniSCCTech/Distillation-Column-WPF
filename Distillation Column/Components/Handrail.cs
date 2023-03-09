@@ -12,6 +12,7 @@ using Tekla.Structures;
 using Render;
 using Tekla.Structures.ModelInternal;
 using Tekla.Structures.Datatype;
+using System.Threading;
 
 namespace DistillationColumn
 {
@@ -39,6 +40,7 @@ namespace DistillationColumn
         double length;
         double ladderWidth = 470;
         double theta;
+        public static double count = 0;
         List<double> arcLengthList = new List<double>();
         List<List<double>> handRailData;
 
@@ -307,9 +309,11 @@ namespace DistillationColumn
                     CreateWeldAlongCircumference(point2, arcLengthList[i], false, false);
                 }
                 handrail.SetInputPositions(point1, point2);
+                handrail.SetAttribute("P10", count);
                 handrail.Insert();
                 handrail.SetAttribute("P1", 0);
                 handrail.Modify();
+                count++;
 
             }
             //_tModel.Model.CommitChanges();

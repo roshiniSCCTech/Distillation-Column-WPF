@@ -29,6 +29,8 @@ namespace DistillationColumn
         TeklaModelling _tModel;
         Tekla.Structures.Geometry3d.CoordinateSystem ModelObjectCoordSys;
         AssemblyDrawing assemblyDrawing;
+        public Part handrailMainPart;
+        public List<ModelObject> handRailModelObjects = new List<ModelObject>();
         DrawingHandler dwgHandler = new DrawingHandler();
         Assembly handrailAssembly = new Assembly();
         ArrayList Parts;
@@ -53,8 +55,8 @@ namespace DistillationColumn
             _tModel = tModel;
             // StackAsssemblyList = new List<Assembly>();
             AddHandrailAssembly(_global.handrailCollection);
-            //MessageBox.Show("Please perform numbering. After numbering click ok!!");
-            Build();
+            MessageBox.Show("Please perform numbering. After numbering click ok!!");
+            Build(handrails);
         }
 
 
@@ -106,23 +108,23 @@ namespace DistillationColumn
                         foreach (var val in value)
                         {
                             handrailAssembly = (val as Part).GetAssembly();
-                         //   (val as Part).PartNumber.Prefix = "SHR";
-                         //   (val as Part).Modify();
-                         //   if ((val as Part).Name == "SecondPost_Type3" && Flag == false)
-                         //       if ((val as Part).Name == "SecondPost_Type3")
-                         //       {
-                         //           handrailMainPart = (val as Part);
-                         //           handRailModelObjects.Add(handrailMainPart);
-                         //           // Flag = true;
-                         //       }
-                         //   if ((val as Part).Name == AppStrings.handrailPipeTopRail)
-                         //   {
-                         //       handrailMainPart = (val as Part);
-                         //       handRailModelObjects.Add(handrailMainPart);
-                         //       //  Flag = true;
-                         //   }
-                         //;
-                         //   singlePartList.Add(val);
+                            (val as Part).PartNumber.Prefix = "SHR";
+                            (val as Part).Modify();
+                            //   if ((val as Part).Name == "SecondPost_Type3" && Flag == false)
+                            //if ((val as Part).Name == "TopRail_Type3")
+                            //{
+                            //    handrailMainPart = (val as Part);
+                            //    handRailModelObjects.Add(handrailMainPart);
+                            //     //Flag = true;
+                            //}
+                            //if ((val as Part).Name == "TopRail_Type3")
+                            //{
+                            //    handrailMainPart = (val as Part);
+                            //    handRailModelObjects.Add(handrailMainPart);
+                            //     // Flag = true;
+                            //}
+                            //;
+                            //singlePartList.Add(val);
                         }
                         handrailAssembly.Add(value);
                         handrailAssembly.AssemblyNumber.Prefix = "SHR";
@@ -140,42 +142,60 @@ namespace DistillationColumn
                 MessageBox.Show(ex.ToString() + i.ToString());
             }
         }
-        public void Build()
+        //public void Build()
+        //{
+
+
+        //    // JObject jsonData = JObject.Parse(jsonStr);
+        //    // List<JToken> platformTokenList = jsonData["Platform"].ToList();
+        //    //// handrailType = (string)jsonData["Handrail"]["name"];
+        //    // foreach (JToken item in platformTokenList.Reverse<JToken>())
+        //    // {
+        //    //     platFromElevation = (double)(item["Elevation"])+_global.Origin.Z;
+        //    //     elevation.Add(platFromElevation);
+        //    // }
+        //    //handRailMember.Add("Length");
+        //    //origin = new T3D.Point(x, y);
+
+        //    _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(new TransformationPlane());
+        //    ModelObjectEnumerator selectedModelObjects = _tModel.Model.GetModelObjectSelector().GetAllObjects();
+        //    ModelObjectCoordSys = new T3D.CoordinateSystem();
+        //    DrawingUtils.GetCoordinateSystemAndNameOfSelectedObject(selectedModelObjects, out ModelObjectCoordSys, out string ModelObjectName);
+        //    int i = 0;
+        //    foreach (Assembly assemb in handrails)
+        //    {
+        //        assemblyDrawing = new AssemblyDrawing(assemb.Identifier, "HandRail.A");
+        //        assemblyDrawing.Name = "HANDRAIL";
+        //        Tekla.Structures.Drawing.Size A1SizePortrait = new Tekla.Structures.Drawing.Size(800, 843);
+        //        assemblyDrawing.Layout.SheetSize = A1SizePortrait;
+        //        assemblyDrawing.Insert();
+        //        Parts = DrawingUtils.GetAssemblyParts(assemb);
+
+        //    }
+
+        //    i++;
+
+        //    //MapDrawingNumberWithMainPart();
+
+        //    //InsertSectionView();
+        //}
+
+        public void Build(ArrayList assemb)
         {
-
-
-            // JObject jsonData = JObject.Parse(jsonStr);
-            // List<JToken> platformTokenList = jsonData["Platform"].ToList();
-            //// handrailType = (string)jsonData["Handrail"]["name"];
-            // foreach (JToken item in platformTokenList.Reverse<JToken>())
-            // {
-            //     platFromElevation = (double)(item["Elevation"])+_global.Origin.Z;
-            //     elevation.Add(platFromElevation);
-            // }
-            //handRailMember.Add("Length");
-            //origin = new T3D.Point(x, y);
-
-            _tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(new TransformationPlane());
-            ModelObjectEnumerator selectedModelObjects = _tModel.Model.GetModelObjectSelector().GetAllObjects();
-            ModelObjectCoordSys = new T3D.CoordinateSystem();
-            DrawingUtils.GetCoordinateSystemAndNameOfSelectedObject(selectedModelObjects, out ModelObjectCoordSys, out string ModelObjectName);
             int i = 0;
-            foreach (Assembly assemb in handrails)
+            foreach (Assembly assembly in assemb)
             {
-                assemblyDrawing = new AssemblyDrawing(assemb.Identifier, "HandRail.A");
-                assemblyDrawing.Name = "HANDRAIL";
+                //_tModel.Model.GetWorkPlaneHandler().SetCurrentTransformationPlane(new TransformationPlane());
+                //ModelObjectEnumerator selectedModelObjects = _tModel.Model.GetModelObjectSelector().GetAllObjects();
+                //ModelObjectCoordSys = new T3D.CoordinateSystem();
+                //DrawingUtils.GetCoordinateSystemAndNameOfSelectedObject(selectedModelObjects, out ModelObjectCoordSys, out string ModelObjectName);
+                assemblyDrawing = new AssemblyDrawing(assembly.Identifier);
+                assemblyDrawing.Name = "HANDRAIL"+i.ToString();
                 Tekla.Structures.Drawing.Size A1SizePortrait = new Tekla.Structures.Drawing.Size(800, 843);
                 assemblyDrawing.Layout.SheetSize = A1SizePortrait;
                 assemblyDrawing.Insert();
-                Parts = DrawingUtils.GetAssemblyParts(assemb);
-
+                i++;
             }
-
-            i++;
-
-            //MapDrawingNumberWithMainPart();
-
-            //InsertSectionView();
         }
 
         public void InsertSectionView()

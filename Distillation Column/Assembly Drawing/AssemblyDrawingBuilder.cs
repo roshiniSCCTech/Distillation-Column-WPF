@@ -36,11 +36,11 @@ namespace DistillationColumn
       //AddHandrailAssembly(handrailCollection);
       //try { AddsafetyGateAssembly(SafetyGateCollection); } catch (Exception e) { };
       //MessageBox.Show("Please perform numbering. After numbering click ok!!");
-      new StackModuleAssemblyDrawings(_global, _tModel, jsonStr);
+      //new StackModuleAssemblyDrawings(_global, _tModel, jsonStr);
       //StackModuleAssemblyDrawings(_global,_tModel,jsonStr);
       //BuilDrawing(new GratingAssemblyDrawing(), jsonStr);
       //BuilDrawing(new BracketAssemblyDrawing(), jsonStr);
-      //BuilDrawing(new HandrailAssemblyDrawing(), jsonStr);
+       new HandrailAssemblyDrawing(_global, _tModel, jsonStr);
       //BuilDrawing(new LadderAssemblyDrawing(), jsonStr);
       //BuilDrawing(new FrameAssemblyDrawing(), jsonStr);
       //ClearData();

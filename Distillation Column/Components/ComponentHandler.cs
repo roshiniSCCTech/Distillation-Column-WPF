@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TSM = Tekla.Structures.Model;
 using T3D = Tekla.Structures.Geometry3d;
 using HelperLibrary;
+using System.Windows;
 
 namespace DistillationColumn
 {
@@ -69,6 +70,8 @@ namespace DistillationColumn
             //new Duct(_global, _tModel);
 
             _tModel.Model.CommitChanges();
+
+            //MessageBox.Show("Perform Numbering");
             new PartList(_global, _tModel);
 
 
